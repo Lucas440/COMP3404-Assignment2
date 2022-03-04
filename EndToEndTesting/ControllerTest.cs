@@ -4,7 +4,7 @@ using System;
 namespace EndToEndTesting
 {
     [TestClass]
-    public class UnitTest1
+    public class ControllerTest
     {
         [TestMethod]
         public void TestMethod1()
