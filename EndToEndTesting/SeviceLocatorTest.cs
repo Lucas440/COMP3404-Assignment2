@@ -94,5 +94,14 @@ namespace EndToEndTesting
 
             #endregion
         }
+        /// <summary>
+        /// This test will be done by calling the Get Method
+        /// by doing this it will store a facotry in a dictonary
+        /// when this is done we should call it again and check if a new factory has been made
+        /// or it stored the old factory
+        /// If it uses a stored factory the test passes
+        /// </summary>
+        [TestMethod]
+        public void TestServiceLocatorStore() { }
     }
 }
