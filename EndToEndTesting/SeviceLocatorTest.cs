@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using COMP3404;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Server.ServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,7 +32,34 @@ namespace EndToEndTesting
             //
             // TODO: Add test logic here
             //
+            //INTIALISE a new ServiceLocator called serviceLocator
+            IServiceLocator serviceLocator = new ServiceLocator();
+
+            //Initalise a mockController using the ServiceLocator to get the controller
+            var mockController = (serviceLocator.Get<Mock<Controller>, Mock<Controller>>() as IFactory).Get<Mock<Controller>, Mock<Controller>>();
+
+            //INITALISE a bool called hasPassed, Set to true
+            bool hasPassed = true;
+
+            //Try the following code
+            try 
+            {
+                //Verify the mockController
+                mockController.Verify();
+            }
+            //Catch any Exception
+            catch(Exception) 
+            {
+                //Set hasPassed to false
+                hasPassed = false;
+            }
+            finally 
+            {
+                //Assert hasPassed
+                Assert.IsTrue(hasPassed);
+            }
         }
+
         /// <summary>
         /// This test will be done by calling the Get Method
         /// by doing this it will store a facotry in a dictonary

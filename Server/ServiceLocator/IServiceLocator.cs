@@ -20,7 +20,8 @@ namespace Server.ServiceLocator
         /// A method that returns an IService
         /// </summary>
         /// <typeparam name="T">The Product of the Serive</typeparam>
+        /// /// <typeparam name="C">The child of The Product of the Serive</typeparam>
         /// <returns>The Creator of the Product</returns>
-        IService Get<T>();
+        IService Get<T , C>();
     }
 }
