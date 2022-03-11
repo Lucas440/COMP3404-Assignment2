@@ -15,7 +15,7 @@ namespace COMP3404
     /// <summary>
     /// A class that controls high levels inside the program
     /// </summary>
-    public class Controller : IControler
+    public class Controller : IController
     {
         //DECLARE a IServiceLocator called _serviceLocator
         IServiceLocator _serviceLocator;

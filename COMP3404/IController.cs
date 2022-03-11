@@ -15,7 +15,7 @@ namespace COMP3404
     /// <summary>
     /// An interface used to control high level classes
     /// </summary>
-    public interface IControler
+    public interface IController
     {
         /// <summary>
         /// A Method used to intialise Controller
