@@ -35,7 +35,7 @@ namespace Server.ServiceLocator
         /// </summary>
         /// <typeparam name="T">The Product of the service</typeparam>
         /// <returns>The Service that creates the Product</returns>
-        public IService Get<T , C>()
+        public IService Get<T, C>()
         {
             //If _serviceCollection does not contain a key of type T
             if (!_serviceCollection.ContainsKey(typeof(T)))
