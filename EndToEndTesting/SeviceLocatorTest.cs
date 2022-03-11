@@ -29,9 +29,6 @@ namespace EndToEndTesting
         [TestMethod]
         public void TestServiceLocatorGet()
         {
-            //
-            // TODO: Add test logic here
-            //
             //INTIALISE a new ServiceLocator called serviceLocator
             IServiceLocator serviceLocator = new ServiceLocator();
 
@@ -68,6 +65,25 @@ namespace EndToEndTesting
         /// If it uses a stored factory the test passes
         /// </summary>
         [TestMethod]
-        public void TestServiceLocatorStore() { }
+        public void TestServiceLocatorStore() 
+        {
+            //INTIALISE a new ServiceLocator called serviceLocator
+            IServiceLocator serviceLocator = new ServiceLocator();
+
+            //INITALISE a mockService using the service locator
+            var mockService = (serviceLocator.Get<Mock<IService>, Mock<Factory>>());
+
+            //If mockSerivce is equal to the service got by ServiceLocator this is true
+            if (mockService == serviceLocator.Get<Mock<IService> , Mock<Factory>>()) 
+            {
+                //Assert a passing Test
+                Assert.IsTrue(true);
+            }
+            else 
+            {
+                //Assert a Failing Test
+                Assert.IsTrue(false);
+            }
+        }
     }
 }
