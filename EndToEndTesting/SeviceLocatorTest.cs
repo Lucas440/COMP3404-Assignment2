@@ -78,21 +78,20 @@ namespace EndToEndTesting
 
             //INITALISE a mockService using the service locator
             var mockService = (serviceLocator.Get<Mock<IService>, Mock<Factory>>());
+            //INTIALISE a bool hasPassed set to true
+            bool hasPassed = true;
             #endregion
             #region ACT
             //If mockSerivce is equal to the service got by ServiceLocator this is true
-            if (mockService == serviceLocator.Get<Mock<IService> , Mock<Factory>>())
+            if (!(mockService == serviceLocator.Get<Mock<IService> , Mock<Factory>>()))
             #endregion
             #region ASSERT
             {
-                //Assert a passing Test
-                Assert.IsTrue(true);
+                hasPassed = false;
             }
-            else 
-            {
-                //Assert a Failing Test
-                Assert.IsTrue(false);
-            }
+            //Assert a test result based on hasPassed
+            Assert.IsTrue(hasPassed);
+
             #endregion
         }
     }
