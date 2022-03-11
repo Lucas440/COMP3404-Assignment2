@@ -11,14 +11,18 @@ using System.Threading.Tasks;
 namespace Server.Command
 {
     /// <summary>
-    /// A interface that is used to invoke commands
+    /// A class used to invoke commands
     /// </summary>
-    public interface ICommandInvoker
+    public class CommandInvoker : ICommandInvoker
     {
         /// <summary>
         /// A method used to invoke commands
         /// </summary>
         /// <param name="pCommand">The command being invoked</param>
-        void Invoke(ICommand pCommand);
+        public void Invoke(ICommand pCommand) 
+        {
+            //Executes the command
+            pCommand.Execute();
+        }
     }
 }

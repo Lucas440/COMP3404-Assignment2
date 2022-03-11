@@ -29,6 +29,7 @@ namespace EndToEndTesting
         [TestMethod]
         public void TestServiceLocatorGet()
         {
+            #region Arrange
             //INTIALISE a new ServiceLocator called serviceLocator
             IServiceLocator serviceLocator = new ServiceLocator();
 
@@ -37,9 +38,10 @@ namespace EndToEndTesting
 
             //INITALISE a bool called hasPassed, Set to true
             bool hasPassed = true;
-
+            #endregion
+            #region ACT
             //Try the following code
-            try 
+            try
             {
                 //Verify the mockController
                 mockController.Verify();
@@ -50,11 +52,14 @@ namespace EndToEndTesting
                 //Set hasPassed to false
                 hasPassed = false;
             }
-            finally 
+            #endregion
+            #region ASSERT
+            finally
             {
                 //Assert hasPassed
                 Assert.IsTrue(hasPassed);
             }
+            #endregion
         }
 
         /// <summary>
@@ -67,14 +72,18 @@ namespace EndToEndTesting
         [TestMethod]
         public void TestServiceLocatorStore() 
         {
+            #region ARRANGE
             //INTIALISE a new ServiceLocator called serviceLocator
             IServiceLocator serviceLocator = new ServiceLocator();
 
             //INITALISE a mockService using the service locator
             var mockService = (serviceLocator.Get<Mock<IService>, Mock<Factory>>());
-
+            #endregion
+            #region ACT
             //If mockSerivce is equal to the service got by ServiceLocator this is true
-            if (mockService == serviceLocator.Get<Mock<IService> , Mock<Factory>>()) 
+            if (mockService == serviceLocator.Get<Mock<IService> , Mock<Factory>>())
+            #endregion
+            #region ASSERT
             {
                 //Assert a passing Test
                 Assert.IsTrue(true);
@@ -84,6 +93,7 @@ namespace EndToEndTesting
                 //Assert a Failing Test
                 Assert.IsTrue(false);
             }
+            #endregion
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Server.Command;
 using System;
 /// <summary>
 /// Author Lucas Brennan & Flynn Osborne
@@ -22,6 +24,40 @@ namespace EndToEndTesting
         [TestMethod]
         public void TestInvoke()
         {
+            #region ARRANGE
+            //INITALSE a new ICommandInvoker called testInvoker
+            ICommandInvoker testInvoker = new CommandInvoker();
+            //INITALSE a mock ICommand 
+            var mockCommand = new Mock<ICommand>();
+            //Sets up the Exectue command in mockCommand
+            mockCommand.Setup(mock => mock.Execute());
+            //INTIALSE a bool called hasPassed set to true
+            bool hasPassed = true;
+            #endregion
+            #region ACT
+            //Invokes mockCommand
+            testInvoker.Invoke(mockCommand.Object);
+
+            #endregion
+            #region ASSERT
+
+            //trys the following
+            try
+            {
+                mockCommand.Verify(mock => mock.Execute(), Times.Once());
+            }
+            //Catches any exception
+            catch (Exception) 
+            {
+                //sets hasPassed to false
+                hasPassed = false;
+            }
+            finally 
+            {
+                //Asserts a result bassed on hasPassed
+                Assert.IsTrue(hasPassed);
+            }
+            #endregion
         }
     }
 }
