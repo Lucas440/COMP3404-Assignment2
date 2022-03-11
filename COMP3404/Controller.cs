@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Server.Command;
+using Server.ServiceLocator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +15,37 @@ namespace COMP3404
     /// <summary>
     /// A class that controls high levels inside the program
     /// </summary>
-    public class Controller
+    public class Controller : IControler
     {
+        //DECLARE a IServiceLocator called _serviceLocator
+        IServiceLocator _serviceLocator;
+
+        //DECLARE a ICommandInvoker called _commandInvoker
+        ICommandInvoker _commandInvoker;
+
         /// <summary>
-        /// The Default Constructor
+        /// The Default Constructor for Controller
         /// </summary>
-        public Controller() { }
+        public Controller() 
+        {
+        }
+        /// <summary>
+        /// A Method used to intialise Controller
+        /// </summary>
+        /// <param name="pLocator">A Service Locator</param>
+        /// <param name="pInvoker">A Command Invoker</param>
+        public void Initalise(IServiceLocator pLocator, ICommandInvoker pInvoker) 
+        {
+            //INTIALISE Class variables
+            //_serviceLocator
+            _serviceLocator = pLocator;
+            //_commandInvoker
+            _commandInvoker = pInvoker;
+        }
+
+        public void AddDisplay() 
+        {
+            
+        }
     }
 }
