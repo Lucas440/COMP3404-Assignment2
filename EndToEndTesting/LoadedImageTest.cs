@@ -36,8 +36,8 @@ namespace EndToEndTesting
             ((LoadedImageLogic)testLogic).LoadNewImage();
             #endregion
             #region ACT
-            //If the loadedimage in test logic is not null
-            if (((LoadedImageLogic)testLogic).LoadedImage != null)
+            //If the returned image in test logic is not null
+            if (((LoadedImageLogic)testLogic).GetImage(path) != null)
             #endregion
             #region ASSERT
             {
@@ -62,11 +62,11 @@ namespace EndToEndTesting
             //INITALISE a new ILoadedImage called testLogic
             ILoadedImageLogic testLogic = new LoadedImageLogic();
             //Calls the LoadNewImage Method
-            (testLogic).LoadNewImage();
+            string filePath =  (testLogic).LoadNewImage();
             #endregion
             #region ACT
             //If the loadedimage in test logic is not null
-            if (((LoadedImageLogic)testLogic).LoadedImage != null)
+            if (((LoadedImageLogic)testLogic).GetImage(filePath) != null)
             #endregion
             #region ASSERT
             {
@@ -86,6 +86,36 @@ namespace EndToEndTesting
         /// this test passes when the image is accessed from storage
         /// </summary>
         [TestMethod]
-        public void TestImageStorage() { }
+        public void TestImageStorage() 
+        {
+            #region ARRANGE
+            //INITALISE a new ILoadedImage called testLogic
+            ILoadedImageLogic testLogic = new LoadedImageLogic();
+            //sets a path for a image
+            string testPath1 = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
+            //sets a path for a image
+            string testPath2 = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\OrangeFish.png";
+
+            //Calls LoadNewImage passing the first test path
+            testLogic.LoadNewImage(testPath1);
+            //Calls LoadNewImage passing the second test path
+            testLogic.LoadNewImage(testPath2);
+            #endregion
+            #region ACT
+            //If the images returned are not null this is true
+            if (testLogic.GetImage(testPath1) != null && testLogic.GetImage(testPath2) != null)
+            #endregion
+            #region ASSERT
+            {
+                //Passes the test
+                Assert.IsTrue(true);
+            }
+            else
+            {
+                //Fails the test
+                Assert.IsTrue(false);
+            }
+            #endregion
+        }
     }
 }

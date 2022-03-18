@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +17,16 @@ namespace Server.FormLogic
     public interface ILoadedImageLogic
     {
         /// <summary>
+        /// A method that returns an image stored in the dictionary depending on the path
+        /// </summary>
+        /// <param name="pPath">The path of the image</param>
+        /// <returns></returns>
+        Image GetImage(string pPath);
+        /// <summary>
         /// A Method that loads a new image into the logic From the directory by the users choice
         /// </summary>
-        void LoadNewImage();
+        /// <returns>String - Path of the file that was just loaded</returns>
+        string LoadNewImage();
         /// <summary>
         /// A Method that loads a new image into the logic
         /// </summary>

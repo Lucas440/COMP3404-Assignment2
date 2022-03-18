@@ -18,9 +18,25 @@ namespace Server.FormLogic
     public class LoadedImageLogic : ILoadedImageLogic
     {
         //DECLARE a Image called_loadedImages
-        private Image _loadedImage;
-        //DECLARE a Property called LoadedImage which returns _loadedImage
-        public Image LoadedImage { get => _loadedImage; }
+        private IDictionary<string , Image> _loadedImages;
+
+        public LoadedImageLogic() 
+        {
+            //INITIALISE Class variables
+            //_loadedImages
+            _loadedImages = new Dictionary<string, Image>();
+        }
+
+        /// <summary>
+        /// A method that returns an image stored in the dictionary depending on the path
+        /// </summary>
+        /// <param name="pPath">The path of the image</param>
+        /// <returns></returns>
+        public Image GetImage(string pPath) 
+        {
+            //returns the image stored
+            return _loadedImages[pPath];
+        }
 
         /// <summary>
         /// A Method that loads a new image into the logic
@@ -28,15 +44,17 @@ namespace Server.FormLogic
         /// <param name="pPath">The Path of the image</param>
         public void LoadNewImage(string pPath) 
         {
-            //Loads the image from the file path
-            _loadedImage = Bitmap.FromFile(pPath);
+            //Loads the image from the file path and stores it in the dictionary with the filepath as the key
+            _loadedImages.Add(pPath  ,Bitmap.FromFile(pPath));
         }
         /// <summary>
         /// A Method that loads a new image into the logic From the directory by the users choice
         /// </summary>
+        /// <returns>String - Path of the file that was just loaded</returns>
         /// Modified from https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=windowsdesktop-6.0 Accessed (10/03/2022)
-        public void LoadNewImage() 
+        public string LoadNewImage() 
         {
+            string path = "";
             //uses the OpenFileDialog class and INITALISES it
             using (OpenFileDialog openFileDialog = new OpenFileDialog()) 
             {
@@ -52,10 +70,12 @@ namespace Server.FormLogic
                 if (openFileDialog.ShowDialog() == DialogResult.OK) 
                 {
                     //Sets the path to the Dialogs filename
-                    string path = openFileDialog.FileName;
+                    path = openFileDialog.FileName;
                     //Loads the image from the path
-                    _loadedImage = Bitmap.FromFile(path);
+                    _loadedImages.Add(path, Bitmap.FromFile(path));
                 }
+
+                return path;
             }
         }
     }
