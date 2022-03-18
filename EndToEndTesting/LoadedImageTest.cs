@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Server.FormLogic;
 using System;
+using System.Drawing;
 /// <summary>
 /// Author Lucas Brennan & Flynn Osborne
 /// 
@@ -21,8 +23,62 @@ namespace EndToEndTesting
         /// This test passes when the image is loaded and can be accessed
         /// </summary>
         [TestMethod]
-        public void TestLoadNewImage()
+        public void TestLoadNewImageWithPath()
         {
+            #region ARRANGE
+            //sets a path for the image
+            string path = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
+
+            //INITALISE a new ILoadedImage called testLogic
+            ILoadedImageLogic testLogic = new LoadedImageLogic();
+            //Calls LoadNewImage passing the path
+            testLogic.LoadNewImage(path);
+            ((LoadedImageLogic)testLogic).LoadNewImage();
+            #endregion
+            #region ACT
+            //If the loadedimage in test logic is not null
+            if (((LoadedImageLogic)testLogic).LoadedImage != null)
+            #endregion
+            #region ASSERT
+            {
+                //Passes the test
+                Assert.IsTrue(true);
+            }
+            else 
+            {
+                //Fails the test
+                Assert.IsTrue(false);
+            }
+            #endregion
+        }
+        /// <summary>
+        /// This method will test the LoadNewImage Method
+        /// it should load a image from the disk by giving the user a dialog
+        /// This test passes when the image is loaded and can be accessed
+        /// </summary>
+        public void TestLoadNewImageWithOutPath() 
+        {
+            #region ARRANGE
+            //INITALISE a new ILoadedImage called testLogic
+            ILoadedImageLogic testLogic = new LoadedImageLogic();
+            //Calls the LoadNewImage Method
+            (testLogic).LoadNewImage();
+            #endregion
+            #region ACT
+            //If the loadedimage in test logic is not null
+            if (((LoadedImageLogic)testLogic).LoadedImage != null)
+            #endregion
+            #region ASSERT
+            {
+                //Passes the test
+                Assert.IsTrue(true);
+            }
+            else
+            {
+                //Fails the test
+                Assert.IsTrue(false);
+            }
+            #endregion
         }
         /// <summary>
         /// This Method will test if the Class is storing the Images loaded
