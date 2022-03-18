@@ -3,17 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/// <summary>
-/// Author Lucas Brennan & Flynn Osborne
-/// 
-/// Date: 18/03/22
-/// </summary>
+
+// AUTHOR: Flynn Osborne & Lucas Brennan
+// DATE: 18/03/2022
+
 namespace Server.FormLogic
 {
-    /// <summary>
-    /// An interface that represents the logic of the Image Display form
-    /// </summary>
-    class IImageDisplayLogic
+    public interface IImageDisplayLogic
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        void Initialise();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void RotateButton_Click();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="option"></param>
+        void FlipButton_Click(string option);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="option"></param>
+        void ChangeButton_Click(string option);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="option"></param>
+        void FilterButton_Click(string option);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void SaveImageButton_Click();
+
+
     }
 }
