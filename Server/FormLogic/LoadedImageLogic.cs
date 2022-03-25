@@ -45,8 +45,17 @@ namespace Server.FormLogic
         /// <param name="pPath">The Path of the image</param>
         public void LoadNewImage(string pPath) 
         {
-            //Loads the image from the file path and stores it in the dictionary with the filepath as the key
-            _loadedImages.Add(pPath  ,Bitmap.FromFile(pPath));
+            try
+            {
+                //Loads the image from the file path and stores it in the dictionary with the filepath as the key
+                _loadedImages.Add(pPath, Bitmap.FromFile(pPath));
+            }
+            //Catchs an Exception
+            catch (Exception)
+            {
+                //throws a new InvalidFilePathException
+                throw new InvalidFilePathException("The File Path Was Invalid!");
+            }
         }
         /// <summary>
         /// A Method that loads a new image into the logic From the directory by the users choice

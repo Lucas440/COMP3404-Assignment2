@@ -50,6 +50,7 @@
     <Compile Include="Command\ICommandInvoker.cs" />
     <Compile Include="Command\ICommandOneParam.cs" />
     <Compile Include="Command\ICommandZeroParam.cs" />
+    <Compile Include="Exceptions\InvalidFilePathException.cs" />
     <Compile Include="Exceptions\InvalidFileTypeException.cs" />
     <Compile Include="FormLogic\IImageDisplayLogic.cs" />
     <Compile Include="FormLogic\ILoadedImageLogic.cs" />

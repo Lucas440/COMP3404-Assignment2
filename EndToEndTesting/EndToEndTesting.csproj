@@ -71,6 +71,7 @@
     <Compile Include="SeviceLocatorTest.cs" />
     <Compile Include="CommandInvokerTest.cs" />
     <Compile Include="ImageDisplayLogicTest.cs" />
+    <Compile Include="InvalidFilePathTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
