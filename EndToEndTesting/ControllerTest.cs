@@ -42,8 +42,8 @@ namespace EndToEndTesting
 
             #region ASSERT
             // ASSERT that the service locator and command invoker variables are not null
-            Assert.IsNotNull(testController._serviceLocator);
-            Assert.IsNotNull(testController._commandInvoker);
+            Assert.IsNotNull(testController.Locator);
+            Assert.IsNotNull(testController.Invoker);
             #endregion
         }
         /// <summary>
