@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Moq;
 using System.Drawing;
 using Server.FormLogic;
 
@@ -28,21 +29,27 @@ namespace EndToEndTesting
             // INSTANTIATE a test ImageDisplayLogic instance
             ImageDisplayLogic testDisplayLogic = new ImageDisplayLogic();
 
+            // INSTANTIATE a test LoadedImageLogic instance
             LoadedImageLogic testLoadedLogic = new LoadedImageLogic();
 
-            string path = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
+            // GET the path to an image
+            string path = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\JavaFish.png";
 
+            // LOAD the image from the given path
             testLoadedLogic.LoadNewImage(path);
 
+            // SET the image to a variable
             Image testBeforeImage = testLoadedLogic.GetImage(path);
             #endregion
 
             #region ACT
+            // ACTIVATE the RotateButton_Click event
             Image testAfterImage = testDisplayLogic.RotateButton_Click(testBeforeImage);
             #endregion
 
             #region ASSERT
-            Assert.AreNotEqual(testBeforeImage, testAfterImage);
+            // ASSERT that the rotated image was returned
+            Assert.IsNotNull(testAfterImage);
             #endregion
         }
     }

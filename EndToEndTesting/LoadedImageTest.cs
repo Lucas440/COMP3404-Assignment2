@@ -27,7 +27,7 @@ namespace EndToEndTesting
         {
             #region ARRANGE
             //sets a path for the image
-            string path = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
+            string path = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\JavaFish.png";
 
             //INITALISE a new ILoadedImage called testLogic
             ILoadedImageLogic testLogic = new LoadedImageLogic();
@@ -35,10 +35,12 @@ namespace EndToEndTesting
             testLogic.LoadNewImage(path);
             ((LoadedImageLogic)testLogic).LoadNewImage();
             #endregion
+
             #region ACT
             //If the returned image in test logic is not null
             if (((LoadedImageLogic)testLogic).GetImage(path) != null)
             #endregion
+
             #region ASSERT
             {
                 //Passes the test
@@ -92,9 +94,9 @@ namespace EndToEndTesting
             //INITALISE a new ILoadedImage called testLogic
             ILoadedImageLogic testLogic = new LoadedImageLogic();
             //sets a path for a image
-            string testPath1 = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
+            string testPath1 = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\JavaFish.png";
             //sets a path for a image
-            string testPath2 = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\OrangeFish.png";
+            string testPath2 = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\OrangeFish.png";
 
             //Calls LoadNewImage passing the first test path
             testLogic.LoadNewImage(testPath1);
