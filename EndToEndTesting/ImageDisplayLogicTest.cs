@@ -1,15 +1,17 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Drawing;
+using Server.FormLogic;
+
 /// <summary>
-/// Author Lucas Brennan & Flynn Osborne
-/// 
-/// Date: 04/03/22
+/// AUTHOR: Lucas Brennan & Flynn Osborne
+/// DATE: 25/03/22
 /// </summary>
 namespace EndToEndTesting
 {
     /// <summary>
     /// This test the ImageDisplayLogic class
-    /// this test will ensure the OnButtonClick method fucntions correctly with the event given
+    /// This test will ensure the OnButtonClick method functions correctly with the event given
     /// </summary>
     [TestClass]
     public class ImageDisplayLogicTest
@@ -22,6 +24,26 @@ namespace EndToEndTesting
         [TestMethod]
         public void TestOnButtonClick()
         {
+            #region ARRANGE
+            // INSTANTIATE a test ImageDisplayLogic instance
+            ImageDisplayLogic testDisplayLogic = new ImageDisplayLogic();
+
+            LoadedImageLogic testLoadedLogic = new LoadedImageLogic();
+
+            string path = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
+
+            testLoadedLogic.LoadNewImage(path);
+
+            Image testBeforeImage = testLoadedLogic.GetImage(path);
+            #endregion
+
+            #region ACT
+            Image testAfterImage = testDisplayLogic.RotateButton_Click(testBeforeImage);
+            #endregion
+
+            #region ASSERT
+            Assert.AreNotEqual(testBeforeImage, testAfterImage);
+            #endregion
         }
     }
 }

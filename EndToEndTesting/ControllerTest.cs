@@ -1,9 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using COMP3404;
+using Server.Command;
+using Server.ServiceLocator;
+
 /// <summary>
-/// Author Lucas Brennan & Flynn Osborne
-/// 
-/// Date: 04/03/22
+/// AUTHOR: Lucas Brennan & Flynn Osborne
+/// DATE: 25/03/22
 /// </summary>
 namespace EndToEndTesting
 {
@@ -18,11 +21,30 @@ namespace EndToEndTesting
         /// <summary>
         /// This method will test controllers constructor
         /// It should Intialise and store objects
-        /// this test passes when the constructor stores all objected needed
+        /// this test passes when the constructor stores all objects needed
         /// </summary>
         [TestMethod]
         public void TestConstructor()
         {
+            #region ARRANGE
+            // CREATE a new test controller
+            Controller testController = new Controller();
+
+            // INSTANTIATE a test ServiceLocator and a new CommandInvoker
+            IServiceLocator testLocator = new ServiceLocator();
+            ICommandInvoker testInvoker = new CommandInvoker();
+            #endregion
+
+            #region ACT
+            // INITIALISE the controller
+            testController.Initalise(testLocator, testInvoker);
+            #endregion
+
+            #region ASSERT
+            // ASSERT that the service locator and command invoker variables are not null
+            Assert.IsNotNull(testController._serviceLocator);
+            Assert.IsNotNull(testController._commandInvoker);
+            #endregion
         }
         /// <summary>
         /// This method will test controllers AddDisplay method
@@ -32,6 +54,17 @@ namespace EndToEndTesting
         [TestMethod]
         public void TestAddDisplay()
         {
+            #region ARRANGE
+
+            #endregion
+
+            #region ACT
+
+            #endregion
+
+            #region ASSERT
+
+            #endregion
         }
     }
 }
