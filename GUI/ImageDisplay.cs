@@ -20,6 +20,8 @@ namespace GUI
         //
         private IImageDisplayLogic _logic;
 
+        Image displayedImage;
+
         /// <summary>
         /// 
         /// </summary>
@@ -37,7 +39,7 @@ namespace GUI
         /// <param name="e"></param>
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            _logic.RotateButton_Click();
+            _logic.RotateButton_Click(displayedImage);
         }
 
         /// <summary>
