@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Server.Exceptions;
 /// <summary>
 /// Author Lucas Brennan & Flynn Osborne
 /// 
@@ -61,7 +62,7 @@ namespace Server.FormLogic
                 //Sets the InitialDirectory as C
                 openFileDialog.InitialDirectory = "c:\\";
                 //Only allows for Png Files to be loaded into the program
-                openFileDialog.Filter = "png files (*.png) | *.png" ;
+                //openFileDialog.Filter = "png files (*.png) | *.png" ;
                 //Filters the Index to what is being requested (png)
                 openFileDialog.FilterIndex = 2;
                 //when called agian the same directory the user left will be loaded
@@ -71,8 +72,17 @@ namespace Server.FormLogic
                 {
                     //Sets the path to the Dialogs filename
                     path = openFileDialog.FileName;
-                    //Loads the image from the path
-                    _loadedImages.Add(path, Bitmap.FromFile(path));
+                    try
+                    {
+                        //Loads the image from the path
+                        _loadedImages.Add(path, Bitmap.FromFile(path));
+                    }
+                    //Catches an Exception
+                    catch (Exception) 
+                    {
+                        //throws a new InvalidFileTypeException
+                        throw new InvalidFileTypeException("Only Image Files can be Loaded!");
+                    }
                 }
 
                 return path;

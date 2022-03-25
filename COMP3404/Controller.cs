@@ -18,10 +18,10 @@ namespace COMP3404
     public class Controller : IController
     {
         //DECLARE a IServiceLocator called _serviceLocator
-        IServiceLocator _serviceLocator;
+        public IServiceLocator _serviceLocator;
 
         //DECLARE a ICommandInvoker called _commandInvoker
-        ICommandInvoker _commandInvoker;
+        public ICommandInvoker _commandInvoker;
 
         /// <summary>
         /// The Default Constructor for Controller

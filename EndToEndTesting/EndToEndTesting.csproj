@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerTest.cs" />
+    <Compile Include="InvaildFileTypeTest.cs" />
     <Compile Include="LoadedImageTest.cs" />
     <Compile Include="MainMenuLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
