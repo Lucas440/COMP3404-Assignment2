@@ -41,6 +41,16 @@ namespace COMP3404
             get { return _serviceLocator; }
         }
 
+        public ICommandInvoker Invoker
+        {
+            get { return _commandInvoker; }
+        }
+
+        public IServiceLocator Locator
+        {
+            get { return _serviceLocator; }
+        }
+
         /// <summary>
         /// The Default Constructor for Controller
         /// </summary>
