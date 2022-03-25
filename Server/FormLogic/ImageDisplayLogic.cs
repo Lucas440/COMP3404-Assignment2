@@ -33,9 +33,11 @@ namespace Server.FormLogic
         /// <summary>
         /// 
         /// </summary>
-        public void RotateButton_Click()
+        public Image RotateButton_Click(Image temp)
         {
-            //temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+            return temp;
         }
 
         /// <summary>

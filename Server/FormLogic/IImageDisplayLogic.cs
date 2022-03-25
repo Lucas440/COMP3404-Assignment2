@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 // AUTHOR: Flynn Osborne & Lucas Brennan
 // DATE: 18/03/2022
@@ -19,7 +20,7 @@ namespace Server.FormLogic
         /// <summary>
         /// 
         /// </summary>
-        void RotateButton_Click();
+        Image RotateButton_Click(Image temp);
 
         /// <summary>
         /// 
