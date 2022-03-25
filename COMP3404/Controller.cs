@@ -23,12 +23,23 @@ namespace COMP3404
         //DECLARE a ICommandInvoker called _commandInvoker
         public ICommandInvoker _commandInvoker;
 
+        public ICommandInvoker Invoker
+        {
+            get { return _commandInvoker; }
+        }
+
+        public IServiceLocator Locator
+        {
+            get { return _serviceLocator; }
+        }
+
         /// <summary>
         /// The Default Constructor for Controller
         /// </summary>
         public Controller() 
         {
         }
+
         /// <summary>
         /// A Method used to intialise Controller
         /// </summary>
