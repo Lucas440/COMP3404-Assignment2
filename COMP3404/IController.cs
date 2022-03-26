@@ -2,6 +2,7 @@
 using Server.ServiceLocator;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,14 @@ namespace COMP3404
         void Initalise(IServiceLocator pLocator, ICommandInvoker pInvoker);
         
         /// <summary>
-        /// A method used to add new displays to the screen
+        /// A method used to add new LoadedImageForm to the screen
         /// </summary>
         void AddLoadedImageForm();
+
+        /// <summary>
+        /// A Methood used to Add a ImageDisplay Form
+        /// </summary>
+        /// <param name="pDisplayImage">The Image the form will be displaying</param>
+        void AddImageDisplayForm(Image pDisplayImage);
     }
 }

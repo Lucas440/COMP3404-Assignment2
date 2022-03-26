@@ -45,7 +45,9 @@ namespace GUI
         /// <param name="e"></param>
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            _logic.RotateButton_Click(displayedImage);
+            displayedImage = _logic.RotateButton_Click(displayedImage);
+            ImageHolder.BackgroundImage = displayedImage;
+            ImageHolder.Focus();
         }
 
         /// <summary>

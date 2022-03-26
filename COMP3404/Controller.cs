@@ -96,10 +96,12 @@ namespace COMP3404
             //Creates a new LoadedImagesLogic using the serviceLocator
             IFormLogic tempLogic = (_serviceLocator.Get<IFormLogic , ILoadedImageLogic>() as IFactory).Get<IFormLogic , LoadedImageLogic>();
 
+            //Creates a New Command called addImageDisplay using _serviceLocator
             ICommand addImageDisplay = (_serviceLocator.Get<ICommand , ICommandOneParam<Image>>() as IFactory).Get<ICommandOneParam<Image> , CommandOneParam<Image>>();
 
+            //Sets the Action to AddImageDisplayForm
             ((ICommandOneParam<Image>)addImageDisplay).SetAction = AddImageDisplayForm;
-
+            //Intialises the form passing _commandInvoker and addImageDisplay
             ((LoadedImages)tempForm).Initialise(_commandInvoker , addImageDisplay);
 
             //Subscribes tempLogic to the Publisher
@@ -113,14 +115,16 @@ namespace COMP3404
         /// <summary>
         /// A Methood used to Add a ImageDisplay Form
         /// </summary>
+        /// <param name="pDisplayImage">The Image the form will be displaying</param>
         public void AddImageDisplayForm(Image pDisplayImage) 
         {
             //Creates a new LoadedImages form using the serviceLoactor
             Form tempForm = (_serviceLocator.Get<Form, ImageDisplay>() as IFactory).Get<Form, ImageDisplay>();
             //Creates a new ImageDisplayLogic using the serviceLocator
             IFormLogic tempLogic = (_serviceLocator.Get<IFormLogic, IImageDisplayLogic>() as IFactory).Get<IFormLogic, ImageDisplayLogic>();
-
             
+            //Intialises tempForm passing pDisplayImage
+            ((ImageDisplay)tempForm).Intialise(pDisplayImage);
 
             //Adds the form and the logic to the dictionary
             _formDictionary.Add(tempLogic, tempForm);
