@@ -44,16 +44,18 @@ namespace Server.FormLogic
         /// 
         /// </summary>
         /// <param name="option"></param>
-        public void FlipButton_Click(string option)
+        public Image FlipButton_Click(Image temp, string option)
         {
             if (option == "vertical")
             {
-                //temp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                temp.RotateFlip(RotateFlipType.RotateNoneFlipY);
             }
             else if (option == "horizontal")
             {
-                //temp.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                temp.RotateFlip(RotateFlipType.RotateNoneFlipX);
             }
+
+            return temp;
         }
 
         /// <summary>

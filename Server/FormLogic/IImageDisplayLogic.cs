@@ -25,8 +25,10 @@ namespace Server.FormLogic
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="temp"></param>
         /// <param name="option"></param>
-        void FlipButton_Click(string option);
+        /// <returns></returns>
+        Image FlipButton_Click(Image temp, string option);
 
         /// <summary>
         /// 
