@@ -12,27 +12,33 @@ namespace Server.FormLogic
 {
     public interface IImageDisplayLogic : IFormLogic
     {
+
         /// <summary>
-        /// 
+        /// A Property used to get the image to be displayed
         /// </summary>
-        void Initialise();
+        Image DisplayImage { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        Image RotateButton_Click(Image temp);
+        void Initialise(Image pImage);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Image RotateButton_Click();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="option"></param>
-        void FlipButton_Click(string option);
+        Image FlipButton_Click(string option);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="option"></param>
-        void ChangeButton_Click(string option);
+        void ChangeButton_Click(string option , int value);
 
         /// <summary>
         /// 

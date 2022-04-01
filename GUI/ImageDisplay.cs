@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,6 @@ namespace GUI
         //
         private IImageDisplayLogic _logic;
 
-        Image displayedImage;
-
         /// <summary>
         /// 
         /// </summary>
@@ -31,11 +30,17 @@ namespace GUI
 
             _logic = new ImageDisplayLogic();
         }
+        /// <summary>
+        /// A Method used to Initalise the Display
+        /// </summary>
+        /// <param name="pImage">The Image being displayed</param>
 
         public void Intialise(Image pImage) 
         {
-            displayedImage = pImage;
-            ImageHolder.BackgroundImage = displayedImage;
+            _logic.Initialise(pImage);
+            ImageHolder.BackgroundImage = _logic.DisplayImage;
+
+            BrightnessLabel.Text = BrightnessCounter.Value.ToString();
         }
 
         /// <summary>
@@ -45,8 +50,7 @@ namespace GUI
         /// <param name="e"></param>
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            displayedImage = _logic.RotateButton_Click(displayedImage);
-            ImageHolder.BackgroundImage = displayedImage;
+            ImageHolder.BackgroundImage = _logic.RotateButton_Click();
             ImageHolder.Focus();
         }
 
@@ -57,7 +61,8 @@ namespace GUI
         /// <param name="e"></param>
         private void FlipHorizontalButton_Click(object sender, EventArgs e)
         {
-            _logic.FlipButton_Click("horizontal");
+            ImageHolder.BackgroundImage = _logic.FlipButton_Click("horizontal");
+            ImageHolder.Focus();
         }
 
         /// <summary>
@@ -67,7 +72,8 @@ namespace GUI
         /// <param name="e"></param>
         private void FlipVerticalButton_Click(object sender, EventArgs e)
         {
-            _logic.FlipButton_Click("vertical");
+            ImageHolder.BackgroundImage = _logic.FlipButton_Click("vertical");
+            ImageHolder.Focus();
         }
 
         /// <summary>
@@ -77,7 +83,8 @@ namespace GUI
         /// <param name="e"></param>
         private void ChangeBrightnessButton_Click(object sender, EventArgs e)
         {
-            _logic.ChangeButton_Click("brightness");
+            //_logic.ChangeButton_Click("brightness");
+            
         }
 
         /// <summary>
@@ -87,7 +94,7 @@ namespace GUI
         /// <param name="e"></param>
         private void ChangeContrastButton_Click(object sender, EventArgs e)
         {
-            _logic.ChangeButton_Click("contrast");
+           // _logic.ChangeButton_Click("contrast");
         }
 
         /// <summary>
@@ -97,7 +104,7 @@ namespace GUI
         /// <param name="e"></param>
         private void ChangeSaturationButton_Click(object sender, EventArgs e)
         {
-            _logic.ChangeButton_Click("saturation");
+           // _logic.ChangeButton_Click("saturation");
         }
 
         /// <summary>
@@ -107,7 +114,7 @@ namespace GUI
         /// <param name="e"></param>
         private void PhotoNegativeFilterButton_Click(object sender, EventArgs e)
         {
-            _logic.FilterButton_Click("photo negative");
+            //_logic.FilterButton_Click("photo negative");
         }
 
         /// <summary>
@@ -148,6 +155,13 @@ namespace GUI
         private void SaveImageButton_Click(object sender, EventArgs e)
         {
             _logic.SaveImageButton_Click();
+        }
+
+        private void BrightnessCounter_ValueChanged(object sender, EventArgs e)
+        {
+            _logic.ChangeButton_Click("brightness" , Convert.ToInt32( BrightnessCounter.Value));
+
+            ImageHolder.Image = _logic.DisplayImage;
         }
     }
 }

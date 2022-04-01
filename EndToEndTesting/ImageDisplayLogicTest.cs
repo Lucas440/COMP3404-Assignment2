@@ -33,18 +33,21 @@ namespace EndToEndTesting
             LoadedImageLogic testLoadedLogic = new LoadedImageLogic();
 
             // GET the path to an image
-            string path = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\JavaFish.png";
+            string path = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
 
             // LOAD the image from the given path
             testLoadedLogic.LoadNewImage(path);
 
             // SET the image to a variable
             Image testBeforeImage = testLoadedLogic.GetImage(path);
+
+            testDisplayLogic.Initialise(testBeforeImage);
+
             #endregion
 
             #region ACT
             // ACTIVATE the RotateButton_Click event
-            Image testAfterImage = testDisplayLogic.RotateButton_Click(testBeforeImage);
+            Image testAfterImage = testDisplayLogic.RotateButton_Click();
             #endregion
 
             #region ASSERT
