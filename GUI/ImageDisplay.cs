@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using Server.FormLogic;
 
 // AUTHOR: Flynn Osborne
-// DATE: 18/03/2022
+// DATE: 01/04/2022
 
 namespace GUI
 {
@@ -38,7 +38,7 @@ namespace GUI
         public void Intialise(Image pImage) 
         {
             _logic.Initialise(pImage);
-            ImageHolder.BackgroundImage = _logic.DisplayImage;
+            ImageHolder.Image = _logic.DisplayImage;
 
             BrightnessLabel.Text = BrightnessCounter.Value.ToString();
         }
@@ -50,7 +50,7 @@ namespace GUI
         /// <param name="e"></param>
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            ImageHolder.BackgroundImage = _logic.RotateButton_Click();
+            ImageHolder.Image = _logic.RotateButton_Click();
             ImageHolder.Focus();
         }
 
@@ -61,7 +61,7 @@ namespace GUI
         /// <param name="e"></param>
         private void FlipHorizontalButton_Click(object sender, EventArgs e)
         {
-            ImageHolder.BackgroundImage = _logic.FlipButton_Click("horizontal");
+            ImageHolder.Image = _logic.FlipButton_Click("horizontal");
             ImageHolder.Focus();
         }
 
@@ -72,7 +72,7 @@ namespace GUI
         /// <param name="e"></param>
         private void FlipVerticalButton_Click(object sender, EventArgs e)
         {
-            ImageHolder.BackgroundImage = _logic.FlipButton_Click("vertical");
+            ImageHolder.Image = _logic.FlipButton_Click("vertical");
             ImageHolder.Focus();
         }
 
