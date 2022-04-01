@@ -78,7 +78,9 @@ namespace Server.FormLogic
         {
             if (option == "brightness")
             {
-                //
+                //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/
+                //Original code by Hirendra Sisodiya 
+
                 float value = pValue * 0.01f;
                 float[][] colorMatrixElements = {
                 new float[] {1,0,0,0,0},
