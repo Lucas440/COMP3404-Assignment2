@@ -81,7 +81,9 @@ namespace Server.FormLogic
                 //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/ Accessed 01/04/2022
                 //Original code by Hirendra Sisodiya 
 
+                //DECLARES a float called value which is set to pValue * 0.01f
                 float value = pValue * 0.01f;
+                //Sets an array of colour matrixs
                 float[][] colorMatrixElements = {
                 new float[] {1,0,0,0,0},
                 new float[] {0,1,0,0,0},
@@ -89,18 +91,23 @@ namespace Server.FormLogic
                 new float[] {0,0,0,1,0},
                 new float[] {value,value,value,0,1}
             };
-
+                //Creates a color Matrix called colorMatrix
                 ColorMatrix colorMatrix = new ColorMatrix(colorMatrixElements);
 
+                //Creates a ImageAtrributes called imageAttributes
                 ImageAttributes imageAttributes = new ImageAttributes();
+                //Sets the colorMatrix to colorMatirx
                 imageAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
                 
-                //PictureBox1.Image
+                //DECLARES a new Graphics object
                 Graphics _g = default(Graphics);
+                //Creates a new Bitmap called bm_dest
                 Bitmap bm_dest = new Bitmap(Convert.ToInt32(_imageDisplayed.Width), Convert.ToInt32(_imageDisplayed.Height));
+                //Sets the graphics to bm_dest
                 _g = Graphics.FromImage(bm_dest);
+                //Draws the image
                 _g.DrawImage(_imageDisplayed, new Rectangle(0, 0, bm_dest.Width + 1, bm_dest.Height + 1), 0, 0, bm_dest.Width + 1, bm_dest.Height + 1, GraphicsUnit.Pixel, imageAttributes);
-
+                //Sets _imageDisplayed to bm_dest
                 _imageDisplayed = bm_dest;
                 
             }
@@ -112,10 +119,13 @@ namespace Server.FormLogic
             {
                 //Saturation adjustment code Modified from https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix Accessed 01/04/2022
                 //Original code by Henry Minute
+
+                //Sets the RGB Weights
                 float rWeight = 0.3086f;
                 float gWeight = 0.6094f;
                 float bWeight = 0.0820f;
 
+                //Sets colour Values for the Colour Matrix
                 float a = (1.0f - pValue) * rWeight + pValue;
                 float b = (1.0f - pValue) * rWeight;
                 float c = (1.0f - pValue) * rWeight;
@@ -134,7 +144,7 @@ namespace Server.FormLogic
                                      new float[] {0,  0,  0,  1, 0},
                                      new float[] {0, 0, 0, 0, 1}
                                  };
-
+                //DECLARES a new Graphics object
                 Graphics gr = default(Graphics);
 
                 // Create ColorMatrix
@@ -144,12 +154,14 @@ namespace Server.FormLogic
                 // Set color matrix
                 imgAttribs.SetColorMatrix(clrMatrix, ColorMatrixFlag.Default, ColorAdjustType.Default);
 
+                //Creates a new Bitmap
                 Bitmap curBitmap = new Bitmap(Convert.ToInt32(_imageDisplayed.Width), Convert.ToInt32(_imageDisplayed.Height));
 
                 gr = Graphics.FromImage(curBitmap);
                 // Draw Image with image attributes
                 gr.DrawImage(_imageDisplayed, new Rectangle(0, 0, curBitmap.Width + 1, curBitmap.Height + 1), 0, 0, curBitmap.Width + 1, curBitmap.Height + 1, GraphicsUnit.Pixel, imgAttribs);
 
+                //Sets _imageDisplay to curBitmap
                 _imageDisplayed = curBitmap;
 
             }

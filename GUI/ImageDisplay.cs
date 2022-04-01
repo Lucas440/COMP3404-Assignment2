@@ -37,54 +37,49 @@ namespace GUI
 
         public void Intialise(Image pImage) 
         {
+            //Intialises _logic
             _logic.Initialise(pImage);
+            //Sets Image in Imageholder to what is in _logic
             ImageHolder.Image = _logic.DisplayImage;
 
-            BrightnessLabel.Text = BrightnessCounter.Value.ToString();
         }
 
         /// <summary>
-        /// 
+        /// A method that responds to a button click on RotateButton_Click
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object that sent the event</param>
+        /// <param name="e">The event argument</param>
         private void RotateButton_Click(object sender, EventArgs e)
         {
+            //Sets the displayed image to what is returned
             ImageHolder.Image = _logic.RotateButton_Click();
+            //Draws focus to the image holder
             ImageHolder.Focus();
         }
-
         /// <summary>
-        /// 
+        /// A method that responds to a Button click on FlipHorizontalButton
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object that sent the event</param>
+        /// <param name="e">The event argument</param>
         private void FlipHorizontalButton_Click(object sender, EventArgs e)
         {
+            //Sets the displayed imaged to what is returned
             ImageHolder.Image = _logic.FlipButton_Click("horizontal");
+            //Draws focus to the image holder
             ImageHolder.Focus();
         }
 
         /// <summary>
-        /// 
+        /// A method that responds to a flip button click
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object that sent the event</param>
+        /// <param name="e">The event argument</param>
         private void FlipVerticalButton_Click(object sender, EventArgs e)
         {
+            //Sets the Image to what is returned from logic
             ImageHolder.Image = _logic.FlipButton_Click("vertical");
+            //Draws focus to the image Holder
             ImageHolder.Focus();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ChangeBrightnessButton_Click(object sender, EventArgs e)
-        {
-            //_logic.ChangeButton_Click("brightness");
-            
         }
 
         /// <summary>
@@ -146,19 +141,33 @@ namespace GUI
         {
             _logic.SaveImageButton_Click();
         }
-
+        /// <summary>
+        /// A method that responds to a value change on the brightness counter
+        /// </summary>
+        /// <param name="sender">The object that sent the event</param>
+        /// <param name="e">The event argument</param>
         private void BrightnessCounter_ValueChanged(object sender, EventArgs e)
         {
+            //Calls ChangeButton_Click in _logic
             _logic.ChangeButton_Click("brightness" , Convert.ToInt32( BrightnessCounter.Value));
-
+            //Sets the Displayed image to the image in _logic
             ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to the image holder
+            ImageHolder.Focus();
         }
-
+        /// <summary>
+        /// A method that responds to a value change on the Saturation counter
+        /// </summary>
+        /// <param name="sender">The object that sent the event</param>
+        /// <param name="e">The event argument</param>
         private void SaturationCounter_ValueChanged(object sender, EventArgs e)
         {
+            //Calls ChangeButton_Click in _logic
             _logic.ChangeButton_Click("saturation", (int)SaturationCounter.Value);
-
+            //Sets the Displayed image to the image in _logic
             ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to the image holder
+            ImageHolder.Focus();
         }
     }
 }
