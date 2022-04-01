@@ -78,7 +78,7 @@ namespace Server.FormLogic
         {
             if (option == "brightness")
             {
-                //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/
+                //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/ Accessed 01/04/2022
                 //Original code by Hirendra Sisodiya 
 
                 float value = pValue * 0.01f;
@@ -110,6 +110,47 @@ namespace Server.FormLogic
             }
             else if (option == "saturation")
             {
+                //Saturation adjustment code Modified from https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix Accessed 01/04/2022
+                //Original code by Henry Minute
+                float rWeight = 0.3086f;
+                float gWeight = 0.6094f;
+                float bWeight = 0.0820f;
+
+                float a = (1.0f - pValue) * rWeight + pValue;
+                float b = (1.0f - pValue) * rWeight;
+                float c = (1.0f - pValue) * rWeight;
+                float d = (1.0f - pValue) * gWeight;
+                float e = (1.0f - pValue) * gWeight + pValue;
+                float f = (1.0f - pValue) * gWeight;
+                float g = (1.0f - pValue) * bWeight;
+                float h = (1.0f - pValue) * bWeight;
+                float i = (1.0f - pValue) * bWeight + pValue;
+
+                // ColorMatrix elements
+                float[][] ptsArray = {
+                                     new float[] {a,  b,  c,  0, 0},
+                                     new float[] {d,  e,  f,  0, 0},
+                                     new float[] {g,  h,  i,  0, 0},
+                                     new float[] {0,  0,  0,  1, 0},
+                                     new float[] {0, 0, 0, 0, 1}
+                                 };
+
+                Graphics gr = default(Graphics);
+
+                // Create ColorMatrix
+                ColorMatrix clrMatrix = new ColorMatrix(ptsArray);
+                // Create ImageAttributes
+                ImageAttributes imgAttribs = new ImageAttributes();
+                // Set color matrix
+                imgAttribs.SetColorMatrix(clrMatrix, ColorMatrixFlag.Default, ColorAdjustType.Default);
+
+                Bitmap curBitmap = new Bitmap(Convert.ToInt32(_imageDisplayed.Width), Convert.ToInt32(_imageDisplayed.Height));
+
+                gr = Graphics.FromImage(curBitmap);
+                // Draw Image with image attributes
+                gr.DrawImage(_imageDisplayed, new Rectangle(0, 0, curBitmap.Width + 1, curBitmap.Height + 1), 0, 0, curBitmap.Width + 1, curBitmap.Height + 1, GraphicsUnit.Pixel, imgAttribs);
+
+                _imageDisplayed = curBitmap;
 
             }
         }

@@ -43,7 +43,9 @@ namespace GUI
             this.ImageHolder = new System.Windows.Forms.Button();
             this.BrightnessLabel = new System.Windows.Forms.Label();
             this.BrightnessCounter = new System.Windows.Forms.NumericUpDown();
+            this.SaturationCounter = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessCounter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SaturationCounter)).BeginInit();
             this.SuspendLayout();
             // 
             // RotateButton
@@ -93,7 +95,7 @@ namespace GUI
             // ChangeContrastButton
             // 
             this.ChangeContrastButton.BackColor = System.Drawing.Color.LightCyan;
-            this.ChangeContrastButton.Location = new System.Drawing.Point(409, 12);
+            this.ChangeContrastButton.Location = new System.Drawing.Point(411, 12);
             this.ChangeContrastButton.Name = "ChangeContrastButton";
             this.ChangeContrastButton.Size = new System.Drawing.Size(75, 42);
             this.ChangeContrastButton.TabIndex = 4;
@@ -115,13 +117,12 @@ namespace GUI
             // ChangeSaturationButton
             // 
             this.ChangeSaturationButton.BackColor = System.Drawing.Color.LightCyan;
-            this.ChangeSaturationButton.Location = new System.Drawing.Point(505, 12);
+            this.ChangeSaturationButton.Location = new System.Drawing.Point(363, 129);
             this.ChangeSaturationButton.Name = "ChangeSaturationButton";
             this.ChangeSaturationButton.Size = new System.Drawing.Size(95, 42);
             this.ChangeSaturationButton.TabIndex = 8;
             this.ChangeSaturationButton.Text = "Change Saturation";
             this.ChangeSaturationButton.UseVisualStyleBackColor = false;
-            this.ChangeSaturationButton.Click += new System.EventHandler(this.ChangeSaturationButton_Click);
             // 
             // SepiaToneFilterButton
             // 
@@ -170,7 +171,7 @@ namespace GUI
             // ImageHolder
             // 
             this.ImageHolder.Location = new System.Drawing.Point(56, 81);
-            this.ImageHolder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ImageHolder.Margin = new System.Windows.Forms.Padding(2);
             this.ImageHolder.Name = "ImageHolder";
             this.ImageHolder.Size = new System.Drawing.Size(273, 286);
             this.ImageHolder.TabIndex = 13;
@@ -197,12 +198,26 @@ namespace GUI
             this.BrightnessCounter.TabIndex = 16;
             this.BrightnessCounter.ValueChanged += new System.EventHandler(this.BrightnessCounter_ValueChanged);
             // 
+            // SaturationCounter
+            // 
+            this.SaturationCounter.Location = new System.Drawing.Point(464, 142);
+            this.SaturationCounter.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.SaturationCounter.Name = "SaturationCounter";
+            this.SaturationCounter.Size = new System.Drawing.Size(120, 20);
+            this.SaturationCounter.TabIndex = 17;
+            this.SaturationCounter.ValueChanged += new System.EventHandler(this.SaturationCounter_ValueChanged);
+            // 
             // ImageDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SaturationCounter);
             this.Controls.Add(this.BrightnessCounter);
             this.Controls.Add(this.BrightnessLabel);
             this.Controls.Add(this.ImageHolder);
@@ -220,6 +235,7 @@ namespace GUI
             this.Name = "ImageDisplay";
             this.Text = "Image Display";
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessCounter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SaturationCounter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,6 +257,7 @@ namespace GUI
         private System.Windows.Forms.Button ImageHolder;
         private System.Windows.Forms.Label BrightnessLabel;
         private System.Windows.Forms.NumericUpDown BrightnessCounter;
+        private System.Windows.Forms.NumericUpDown SaturationCounter;
     }
 }
 

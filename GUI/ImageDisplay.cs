@@ -102,16 +102,6 @@ namespace GUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ChangeSaturationButton_Click(object sender, EventArgs e)
-        {
-           // _logic.ChangeButton_Click("saturation");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void PhotoNegativeFilterButton_Click(object sender, EventArgs e)
         {
             //_logic.FilterButton_Click("photo negative");
@@ -160,6 +150,13 @@ namespace GUI
         private void BrightnessCounter_ValueChanged(object sender, EventArgs e)
         {
             _logic.ChangeButton_Click("brightness" , Convert.ToInt32( BrightnessCounter.Value));
+
+            ImageHolder.Image = _logic.DisplayImage;
+        }
+
+        private void SaturationCounter_ValueChanged(object sender, EventArgs e)
+        {
+            _logic.ChangeButton_Click("saturation", (int)SaturationCounter.Value);
 
             ImageHolder.Image = _logic.DisplayImage;
         }
