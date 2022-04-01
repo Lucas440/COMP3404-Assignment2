@@ -57,7 +57,9 @@ namespace GUI
         /// <param name="e"></param>
         private void FlipHorizontalButton_Click(object sender, EventArgs e)
         {
-            _logic.FlipButton_Click("horizontal");
+            displayedImage = _logic.FlipButton_Click(displayedImage, "horizontal");
+            ImageHolder.BackgroundImage = displayedImage;
+            ImageHolder.Focus();
         }
 
         /// <summary>
@@ -67,7 +69,9 @@ namespace GUI
         /// <param name="e"></param>
         private void FlipVerticalButton_Click(object sender, EventArgs e)
         {
-            _logic.FlipButton_Click("vertical");
+            displayedImage = _logic.FlipButton_Click(displayedImage, "vertical");
+            ImageHolder.BackgroundImage = displayedImage;
+            ImageHolder.Focus();
         }
 
         /// <summary>
