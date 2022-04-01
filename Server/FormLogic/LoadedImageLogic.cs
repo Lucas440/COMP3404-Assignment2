@@ -63,7 +63,7 @@ namespace Server.FormLogic
         public string LoadNewImage()
         {
             string path = "";
-            //uses the OpenFileDialog class and INITALISES it
+            //uses the OpenFileDialog class and INITIALISES it
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 //Sets the InitialDirectory as C
@@ -115,7 +115,17 @@ namespace Server.FormLogic
         /// <returns>An image loaded</returns>
         public Image NewImageGet(object source, ButtonClickArgs args) 
         {
-            string path = LoadNewImage();
+            string path = "";
+            try
+            {
+                path = LoadNewImage();
+                return _loadedImages[path];
+            }
+            catch (Exception)
+            {
+                throw new NullFilePathException("The file path is null!");
+            }
+
             return _loadedImages[path];
         }
 
