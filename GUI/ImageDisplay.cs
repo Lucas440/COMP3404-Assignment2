@@ -99,7 +99,9 @@ namespace GUI
         /// <param name="e"></param>
         private void PhotoNegativeFilterButton_Click(object sender, EventArgs e)
         {
-            //_logic.FilterButton_Click("photo negative");
+            _logic.FilterButton_Click("photo negative");
+            ImageHolder.Image = _logic.DisplayImage;
+            ImageHolder.Focus();
         }
 
         /// <summary>
@@ -110,6 +112,8 @@ namespace GUI
         private void SepiaToneFilterButton_Click(object sender, EventArgs e)
         {
             _logic.FilterButton_Click("sepia");
+            ImageHolder.Image = _logic.DisplayImage;
+            ImageHolder.Focus();
         }
 
         /// <summary>
@@ -120,6 +124,8 @@ namespace GUI
         private void BlueScaleFilterButton_Click(object sender, EventArgs e)
         {
             _logic.FilterButton_Click("bluescale");
+            ImageHolder.Image = _logic.DisplayImage;
+            ImageHolder.Focus();
         }
 
         /// <summary>
@@ -130,6 +136,8 @@ namespace GUI
         private void GreyScaleFilterButton_Click(object sender, EventArgs e)
         {
             _logic.FilterButton_Click("greyscale");
+            ImageHolder.Image = _logic.DisplayImage;
+            ImageHolder.Focus();
         }
 
         /// <summary>
@@ -167,6 +175,17 @@ namespace GUI
             //Sets the Displayed image to the image in _logic
             ImageHolder.Image = _logic.DisplayImage;
             //Draws focus to the image holder
+            ImageHolder.Focus();
+        }
+        /// <summary>
+        /// A Method that responds to when the Contrast Counter Value changes
+        /// </summary>
+        /// <param name="sender">The Object that sent the event</param>
+        /// <param name="e">The event argument</param>
+        private void ContrastCounter_ValueChanged(object sender, EventArgs e)
+        {
+            _logic.ChangeButton_Click("contrast", (int)ContrastCounter.Value);
+            ImageHolder.Image = _logic.DisplayImage;
             ImageHolder.Focus();
         }
     }

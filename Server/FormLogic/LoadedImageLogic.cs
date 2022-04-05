@@ -123,7 +123,7 @@ namespace Server.FormLogic
             }
             catch (Exception)
             {
-                throw new NullFilePathException("The file path is null!");
+                //throw new NullFilePathException("The file path is null!");
             }
 
             return _loadedImages[path];

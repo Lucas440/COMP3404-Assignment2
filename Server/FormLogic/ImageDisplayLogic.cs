@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
 using System.Drawing.Imaging;
 
 // AUTHOR: Lucas Brennan & Flynn Osborne
@@ -74,7 +68,7 @@ namespace Server.FormLogic
         /// 
         /// </summary>
         /// <param name="option"></param>
-        public void ChangeButton_Click(string option , int pValue)
+        public void ChangeButton_Click(string option, int pValue)
         {
             if (option == "brightness")
             {
@@ -98,7 +92,7 @@ namespace Server.FormLogic
                 ImageAttributes imageAttributes = new ImageAttributes();
                 //Sets the colorMatrix to colorMatirx
                 imageAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-                
+
                 //DECLARES a new Graphics object
                 Graphics _g = default(Graphics);
                 //Creates a new Bitmap called bm_dest
@@ -109,10 +103,102 @@ namespace Server.FormLogic
                 _g.DrawImage(_imageDisplayed, new Rectangle(0, 0, bm_dest.Width + 1, bm_dest.Height + 1), 0, 0, bm_dest.Width + 1, bm_dest.Height + 1, GraphicsUnit.Pixel, imageAttributes);
                 //Sets _imageDisplayed to bm_dest
                 _imageDisplayed = bm_dest;
-                
+
             }
             else if (option == "contrast")
             {
+                //Contrast adjustment code Modified from https://www.c-sharpcorner.com/uploadfile/75a48f/control-image-contrast-using-asp-net/ Accessed 05/04/2022
+                //Original code by Sourabh Somani
+
+                //Sets the contrast value to pValue
+                double contrast = pValue;
+                //Creates a new temp Bitmap
+                Bitmap temp = (Bitmap)_imageDisplayed;
+                //Clones temp to bMap
+                Bitmap bMap = (Bitmap)temp.Clone();
+                //Adds 100 to contrast then devides it by 100
+                contrast = (100.0 + contrast) / 100.0;
+
+                //Squares Contrast
+                contrast *= contrast;
+                //DECLARE a new Colour called col
+                Color col;
+
+                //Loops over each pixel in bMap
+                for (int i = 0; i < bMap.Width; i++)
+                {
+                    for (int j = 0; j < bMap.Height; j++)
+                    {
+                        //Sets col to the colour of the pixel
+                        col = bMap.GetPixel(i, j);
+                        //Sets the RGB values of the pixels
+                        double pRed = col.R;
+                        double pGreen = col.G;
+                        double pBlue = col.B;
+                        //If the value is not 0 this is true
+                        if (col.R != 0)
+                        {
+                            //Devides the value by 255
+                            pRed = col.R / 255.0;
+                            //Subtracts 0.5
+                            pRed -= 0.5;
+                            //Times by the contrast
+                            pRed *= contrast;
+                            //Adds 0.5 to the value
+                            pRed += 0.5;
+                            //times by 255
+                            pRed *= 255;
+                            //If the value is less than 0 sets it to 0
+                            if (pRed < 0) pRed = 0;
+                            //If the value is more than 255 sets it to 255
+                            if (pRed > 255) pRed = 255;
+                        }
+                        //If the value is not 0 this is true
+                        if (col.G != 0)
+                        {
+                            //Devides the value by 255
+                            pGreen = col.G / 255.0;
+                            //Takes 0.5 away from the value
+                            pGreen -= 0.5;
+                            //timees the contrast
+                            pGreen *= contrast;
+                            //Adds 0.5
+                            pGreen += 0.5;
+                            //Times 255
+                            pGreen *= 255;
+                            // If the value is less than 0 sets it to 0
+                            if (pGreen < 0) pGreen = 0;
+                            //If the value is more than 255 sets it to 255
+                            if (pGreen > 255) pGreen = 255;
+                        }
+                        //If the value is not 0 this is true
+                        if (col.B != 0)
+                        {
+                            //Devides the value by 255
+                            pBlue = col.B / 255.0;
+                            //Subtracts 0.5
+                            pBlue -= 0.5;
+                            //Times contrast
+                            pBlue *= contrast;
+                            //Adds 0.5
+                            pBlue += 0.5;
+                            //Times 255
+                            pBlue *= 255;
+                            // If the value is less than 0 sets it to 0
+                            if (pBlue < 0) pBlue = 0;
+                            //If the value is more than 255 sets it to 255
+                            if (pBlue > 255) pBlue = 255;
+                        }
+                        //If the orginal Values are Not 0 this is true
+                        if (col.R != 0 && col.B != 0 && col.G != 0)
+                        {
+                            //Sets the pixel to the colours pRed, pGreen and pBlue
+                            bMap.SetPixel(i, j, Color.FromArgb((byte)pRed, (byte)pGreen, (byte)pBlue));
+                        }
+                    }
+                }
+                //Sets _imageDisplayed to bMap
+                _imageDisplayed = (Bitmap)bMap.Clone();
 
             }
             else if (option == "saturation")
@@ -175,19 +261,180 @@ namespace Server.FormLogic
         {
             if (option == "photo negative")
             {
+                ///Photo Negative code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
+                //Original code by Yusuf Shakeel
 
+                //Clones _imageDisplayed to tempImage
+                Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
+
+                //Loops over each pixel in the Image
+                for (int i = 0; i < tempImage.Height; i++)
+                {
+                    for (int j = 0; j < tempImage.Width; j++)
+                    {
+                        //DECLARE a color called p , set it to the current pixel
+                        Color p = tempImage.GetPixel(i, j);
+
+                        //DECLARE the ARGB values
+                        int a = p.A;
+                        int r = p.R;
+                        int g = p.G;
+                        int b = p.G;
+
+                        //Minus the values from 255
+                        r = 255 - r;
+                        g = 255 - g;
+                        b = 255 - b;
+                        //Set the current pixel to the colours 
+                        tempImage.SetPixel(i, j, Color.FromArgb(a, r, g, b));
+                    }
+                    //Set _imageDisplayed to tempImage
+                    _imageDisplayed = tempImage;
+                }
             }
             else if (option == "sepia")
             {
+                ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-sepia-image-in-csharp-using-visual-studio Accessed 05/04/2022
+                //Original code by Yusuf Shakeel                
+                //Clones _imageDisplayed to tempImage
+                Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
 
+                //Loops over each pixel in the Image
+                for (int i = 0; i < tempImage.Height; i++)
+                {
+                    for (int j = 0; j < tempImage.Width; j++)
+                    {
+                        //DECLARE a color called p , set it to the current pixel
+                        Color p = tempImage.GetPixel(i, j);
+
+                        //DECLARE the ARGB values
+                        int a = p.A;
+                        int r = p.R;
+                        int g = p.G;
+                        int b = p.G;
+
+                        //DECLARE tR 
+                        //times R by 0.393, g by 0.769, b by 0.189
+                        int tR = (int)(0.393 * r + 0.769 * g + 0.189 * b);
+                        //DECLARE tG
+                        //times R by 0.349, g by 0.686, b by 0.168
+                        int tG = (int)(0.349 * r + 0.686 * g + 0.168 * b);
+                        //DECLARE tB
+                        //times R by 0.272, g by 0.539, b by 0.131
+                        int tB = (int)(0.272 * r + 0.539 * g + 0.131 * b);
+
+                        //if tR greater than 255 this is true
+                        if (tR > 255)
+                        {
+                            //R set to 255
+                            r = 255;
+                        }
+                        else
+                        {
+                            //set r to tR
+                            r = tR;
+                        }
+                        // if tG is greater than 255 this is true
+                        if (tG > 255)
+                        {
+                            //g is Set to 255
+                            g = 255;
+                        }
+                        else
+                        {
+                            //g is set to tG
+                            g = tG;
+                        }
+                        // if tB is greater than 255
+                        if (tB > 255)
+                        {
+                            //b is 255
+                            b = 255;
+                        }
+                        else
+                        {
+                            //b is set to tB
+                            b = tB;
+                        }
+
+                        //Set the current pixel to the colours 
+                        tempImage.SetPixel(i, j, Color.FromArgb(a, r, g, b));
+                    }
+                    //Set _imageDisplayed to tempImage
+                    _imageDisplayed = tempImage;
+                }
             }
             else if (option == "greyscale")
             {
+                ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
+                //Original code by Yusuf Shakeel
 
+                //Clones _imageDisplayed to tempImage
+                Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
+
+                //Loops over each pixel in the Image
+                for (int i = 0; i < tempImage.Height; i++)
+                {
+                    for (int j = 0; j < tempImage.Width; j++)
+                    {
+                        //DECLARE a color called p , set it to the current pixel
+                        Color p = tempImage.GetPixel(i, j);
+
+                        //DECLARE the ARGB values
+                        int a = p.A;
+                        int r = p.R;
+                        int g = p.G;
+                        int b = p.G;
+
+                        //Devide values by 5
+                        r = r / 5;
+                        g = g / 5;
+                        b = b / 5;
+                        //Set the current pixel to the colours 
+                        tempImage.SetPixel(i, j, Color.FromArgb(a, r, g, b));
+                    }
+                    //Set _imageDisplayed to tempImage
+                    _imageDisplayed = tempImage;
+                }
             }
             else if (option == "bluescale")
             {
+                ///BlueScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
+                //Original code by Yusuf Shakeel
 
+                //Clones _imageDisplayed to tempImage
+                Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
+
+                //Loops over each pixel in the Image
+                for (int i = 0; i < tempImage.Height; i++)
+                {
+                    for (int j = 0; j < tempImage.Width; j++)
+                    {
+                        //DECLARE a color called p , set it to the current pixel
+                        Color p = tempImage.GetPixel(i, j);
+
+                        //DECLARE the ARGB values
+                        int a = p.A;
+                        int r = p.R;
+                        int g = p.G;
+                        int b = p.G;
+
+                        if (b != 0)
+                        {
+                            //Devides the values by b
+                            r = r / b;
+                            g = g / b;
+                            //Adds b
+                            b = b + b;
+                            //If b is greater than 255 b is 255
+                            if (b > 255) b = 255;
+                        }
+                        //Set the current pixel to the colours 
+                        tempImage.SetPixel(i, j, Color.FromArgb(a, r, g, b));
+                    }
+                    //Set _imageDisplayed to tempImage
+                    _imageDisplayed = tempImage;
+                }
             }
         }
 
