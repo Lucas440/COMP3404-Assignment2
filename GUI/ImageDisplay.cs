@@ -8,26 +8,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Server.Command;
 using Server.FormLogic;
 
-// AUTHOR: Flynn Osborne
+// AUTHOR: Flynn Osborne && Lucas Brennan
 // DATE: 01/04/2022
 
 namespace GUI
 {
+    /// <summary>
+    /// A Class used to Display Images
+    /// </summary>
     public partial class ImageDisplay : Form
     {
         //
         private IImageDisplayLogic _logic;
 
+
+
         /// <summary>
-        /// 
+        /// The Default Constructor
         /// </summary>
         public ImageDisplay()
         {
             InitializeComponent();
-
+            //INTALISES _logic
             _logic = new ImageDisplayLogic();
         }
         /// <summary>
@@ -35,10 +40,10 @@ namespace GUI
         /// </summary>
         /// <param name="pImage">The Image being displayed</param>
 
-        public void Intialise(Image pImage) 
+        public void Intialise(Image pImage , ICommand pSaveCommand , ICommandInvoker pInvoker) 
         {
             //Intialises _logic
-            _logic.Initialise(pImage);
+            _logic.Initialise(pImage , pSaveCommand , pInvoker);
             //Sets Image in Imageholder to what is in _logic
             ImageHolder.Image = _logic.DisplayImage;
 
@@ -51,8 +56,10 @@ namespace GUI
         /// <param name="e">The event argument</param>
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            //Sets the displayed image to what is returned
-            ImageHolder.Image = _logic.RotateButton_Click();
+            //Calls RotateButton in the logic
+            _logic.RotateButton_Click();
+            //Sets the displayed image to what is in the logic
+            ImageHolder.Image = _logic.DisplayImage;
             //Draws focus to the image holder
             ImageHolder.Focus();
         }
@@ -63,8 +70,10 @@ namespace GUI
         /// <param name="e">The event argument</param>
         private void FlipHorizontalButton_Click(object sender, EventArgs e)
         {
-            //Sets the displayed imaged to what is returned
-            ImageHolder.Image = _logic.FlipButton_Click("horizontal");
+            //Calls FlipButton_Click
+            _logic.FlipButton_Click("horizontal");
+            //Sets the displayed image to what is in the logic
+            ImageHolder.Image = _logic.DisplayImage;
             //Draws focus to the image holder
             ImageHolder.Focus();
         }
@@ -77,76 +86,77 @@ namespace GUI
         private void FlipVerticalButton_Click(object sender, EventArgs e)
         {
             //Sets the Image to what is returned from logic
-            ImageHolder.Image = _logic.FlipButton_Click("vertical");
+            _logic.FlipButton_Click("vertical");
+            //Sets the displayed image to what is in the logic
+            ImageHolder.Image = _logic.DisplayImage;
             //Draws focus to the image Holder
             ImageHolder.Focus();
         }
-
         /// <summary>
-        /// 
+        /// A method that responds to When the photo negative button is clicked
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ChangeContrastButton_Click(object sender, EventArgs e)
-        {
-           // _logic.ChangeButton_Click("contrast");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event</param>
+        /// <param name="e">the event argument</param>
         private void PhotoNegativeFilterButton_Click(object sender, EventArgs e)
         {
+            //Calls FilterButton_Click passing "photo negative"
             _logic.FilterButton_Click("photo negative");
+            //Sets the image in the Display to the image stored in the logic
             ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to the ImageHolder
             ImageHolder.Focus();
         }
 
         /// <summary>
-        /// 
+        /// A method that responds to When the Sepia button is clicked
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event</param>
+        /// <param name="e">the event argument</param>
         private void SepiaToneFilterButton_Click(object sender, EventArgs e)
         {
             _logic.FilterButton_Click("sepia");
+            //Sets the image in the Display to the image stored in the logic
             ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to the ImageHolder
             ImageHolder.Focus();
         }
 
         /// <summary>
-        /// 
+        /// A method that responds to When the Blue Scale button is clicked
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event</param>
+        /// <param name="e">the event argument</param>
         private void BlueScaleFilterButton_Click(object sender, EventArgs e)
         {
             _logic.FilterButton_Click("bluescale");
+            //Sets the image in the Display to the image stored in the logic
             ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to the ImageHolder
             ImageHolder.Focus();
         }
 
         /// <summary>
-        /// 
+        /// A method that responds to When the GreyScale button is clicked
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event</param>
+        /// <param name="e">the event argument</param>
         private void GreyScaleFilterButton_Click(object sender, EventArgs e)
         {
             _logic.FilterButton_Click("greyscale");
+            //Sets the image in the Display to the image stored in the logic
             ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to the ImageHolder
             ImageHolder.Focus();
         }
 
         /// <summary>
-        /// 
+        /// A method that responds to When the Save button is clicked
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event</param>
+        /// <param name="e">the event argument</param>
         private void SaveImageButton_Click(object sender, EventArgs e)
         {
+            //Calls the SaveImageButton method
             _logic.SaveImageButton_Click();
         }
         /// <summary>
@@ -184,8 +194,11 @@ namespace GUI
         /// <param name="e">The event argument</param>
         private void ContrastCounter_ValueChanged(object sender, EventArgs e)
         {
+            //Calls the ChangeButton_Click method passing contrast and the value of the counter
             _logic.ChangeButton_Click("contrast", (int)ContrastCounter.Value);
+            //Sets the image in the holder to the image in _logic
             ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to imageholder
             ImageHolder.Focus();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.Command;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -14,43 +15,52 @@ namespace Server.FormLogic
     {
         //DECLARE a image called _imageDisplayed
         private Image _imageDisplayed;
+        //DECLARE a ICommand called _saveImage
+        private ICommand _saveImage;
+        //DECLARE a ICommandInvoker called _commandInvoker
+        private ICommandInvoker _commandInvoker;
+
         /// <summary>
         /// A Property used to get the image to be displayed
         /// </summary>
         public Image DisplayImage { get => _imageDisplayed; }
-
+        /// <summary>
+        /// The Default Constructor
+        /// </summary>
         public ImageDisplayLogic()
         {
 
         }
 
         /// <summary>
-        /// 
+        /// A Method used to intialise the Logic
         /// </summary>
-        public void Initialise(Image pImage)
+        public void Initialise(Image pImage , ICommand pSaveCommand, ICommandInvoker pInvoker)
         {
             //Sets _imageDisplayed to pImage
             _imageDisplayed = pImage;
+            //INTALISES class variables
+            //_saveImage
+            _saveImage = pSaveCommand;
+            //_commandInvoker
+            _commandInvoker = pInvoker;
         }
 
         /// <summary>
         /// A Method used to roatate the image
         /// </summary>
-        /// <param name="temp">the image being rotated</param>
-        /// <returns></returns>
-        public Image RotateButton_Click()
+        public void RotateButton_Click()
         {
             //Roatates the Image 90 Degrees
             _imageDisplayed.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            //retruns the image
-            return _imageDisplayed;
+            
         }
 
         /// <summary>
-        /// 
+        /// A Method used to Flip images
         /// </summary>
-        /// <param name="option"></param>
-        public Image FlipButton_Click(string option)
+        /// <param name="option">The option the image is being flipped (Virtical or Horizontal)</param>
+        public void FlipButton_Click(string option)
         {
             if (option == "vertical")
             {
@@ -60,14 +70,13 @@ namespace Server.FormLogic
             {
                 _imageDisplayed.RotateFlip(RotateFlipType.RotateNoneFlipX);
             }
-
-            return _imageDisplayed;
         }
 
         /// <summary>
-        /// 
+        /// A Method used to change the Contrast, Brightness and Saturation
         /// </summary>
-        /// <param name="option"></param>
+        /// <param name="option">The Option of the Change, Contrast, Brightness or Saturation</param>
+        /// <param name="value">The Value of the change (Determaines the strength of the change)</param>
         public void ChangeButton_Click(string option, int pValue)
         {
             if (option == "brightness")
@@ -254,9 +263,9 @@ namespace Server.FormLogic
         }
 
         /// <summary>
-        /// 
+        /// A Method that applys filters, Sipea, BlueScale, GreyScale and PhotoNegative
         /// </summary>
-        /// <param name="option"></param>
+        /// <param name="option">The option choosen, Sipea, BlueScale, GreyScale or PhotoNegative</param>
         public void FilterButton_Click(string option)
         {
             if (option == "photo negative")
@@ -439,11 +448,14 @@ namespace Server.FormLogic
         }
 
         /// <summary>
-        /// 
+        /// A Method used to save the image
         /// </summary>
         public void SaveImageButton_Click()
         {
-
+            //Sets the data to _imageDisplayed
+            ((ICommandOneParam<Image>)_saveImage).SetData = _imageDisplayed;
+            //Invokes _saveImage
+            _commandInvoker.Invoke(_saveImage);
         }
     }
 }

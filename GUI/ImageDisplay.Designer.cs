@@ -54,7 +54,7 @@ namespace GUI
             // 
             this.RotateButton.BackColor = System.Drawing.Color.LightBlue;
             this.RotateButton.Location = new System.Drawing.Point(16, 15);
-            this.RotateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RotateButton.Margin = new System.Windows.Forms.Padding(4);
             this.RotateButton.Name = "RotateButton";
             this.RotateButton.Size = new System.Drawing.Size(100, 52);
             this.RotateButton.TabIndex = 0;
@@ -66,7 +66,7 @@ namespace GUI
             // 
             this.FlipHorizontalButton.BackColor = System.Drawing.Color.LightBlue;
             this.FlipHorizontalButton.Location = new System.Drawing.Point(149, 15);
-            this.FlipHorizontalButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FlipHorizontalButton.Margin = new System.Windows.Forms.Padding(4);
             this.FlipHorizontalButton.Name = "FlipHorizontalButton";
             this.FlipHorizontalButton.Size = new System.Drawing.Size(100, 52);
             this.FlipHorizontalButton.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace GUI
             // 
             this.FlipVerticalButton.BackColor = System.Drawing.Color.LightBlue;
             this.FlipVerticalButton.Location = new System.Drawing.Point(284, 15);
-            this.FlipVerticalButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FlipVerticalButton.Margin = new System.Windows.Forms.Padding(4);
             this.FlipVerticalButton.Name = "FlipVerticalButton";
             this.FlipVerticalButton.Size = new System.Drawing.Size(100, 52);
             this.FlipVerticalButton.TabIndex = 2;
@@ -90,7 +90,7 @@ namespace GUI
             // 
             this.ChangeBrightnessButton.BackColor = System.Drawing.Color.LightCyan;
             this.ChangeBrightnessButton.Location = new System.Drawing.Point(484, 100);
-            this.ChangeBrightnessButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChangeBrightnessButton.Margin = new System.Windows.Forms.Padding(4);
             this.ChangeBrightnessButton.Name = "ChangeBrightnessButton";
             this.ChangeBrightnessButton.Size = new System.Drawing.Size(100, 52);
             this.ChangeBrightnessButton.TabIndex = 3;
@@ -101,19 +101,18 @@ namespace GUI
             // 
             this.ChangeContrastButton.BackColor = System.Drawing.Color.LightCyan;
             this.ChangeContrastButton.Location = new System.Drawing.Point(484, 219);
-            this.ChangeContrastButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChangeContrastButton.Margin = new System.Windows.Forms.Padding(4);
             this.ChangeContrastButton.Name = "ChangeContrastButton";
             this.ChangeContrastButton.Size = new System.Drawing.Size(100, 52);
             this.ChangeContrastButton.TabIndex = 4;
             this.ChangeContrastButton.Text = "Change Contrast";
             this.ChangeContrastButton.UseVisualStyleBackColor = false;
-            this.ChangeContrastButton.Click += new System.EventHandler(this.ChangeContrastButton_Click);
             // 
             // PhotoNegativeFilterButton
             // 
             this.PhotoNegativeFilterButton.BackColor = System.Drawing.Color.Snow;
             this.PhotoNegativeFilterButton.Location = new System.Drawing.Point(484, 487);
-            this.PhotoNegativeFilterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PhotoNegativeFilterButton.Margin = new System.Windows.Forms.Padding(4);
             this.PhotoNegativeFilterButton.Name = "PhotoNegativeFilterButton";
             this.PhotoNegativeFilterButton.Size = new System.Drawing.Size(127, 52);
             this.PhotoNegativeFilterButton.TabIndex = 7;
@@ -125,7 +124,7 @@ namespace GUI
             // 
             this.ChangeSaturationButton.BackColor = System.Drawing.Color.LightCyan;
             this.ChangeSaturationButton.Location = new System.Drawing.Point(484, 159);
-            this.ChangeSaturationButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChangeSaturationButton.Margin = new System.Windows.Forms.Padding(4);
             this.ChangeSaturationButton.Name = "ChangeSaturationButton";
             this.ChangeSaturationButton.Size = new System.Drawing.Size(100, 52);
             this.ChangeSaturationButton.TabIndex = 8;
@@ -136,7 +135,7 @@ namespace GUI
             // 
             this.SepiaToneFilterButton.BackColor = System.Drawing.Color.Snow;
             this.SepiaToneFilterButton.Location = new System.Drawing.Point(16, 487);
-            this.SepiaToneFilterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SepiaToneFilterButton.Margin = new System.Windows.Forms.Padding(4);
             this.SepiaToneFilterButton.Name = "SepiaToneFilterButton";
             this.SepiaToneFilterButton.Size = new System.Drawing.Size(127, 52);
             this.SepiaToneFilterButton.TabIndex = 9;
@@ -148,7 +147,7 @@ namespace GUI
             // 
             this.GreyScaleFilterButton.BackColor = System.Drawing.Color.Snow;
             this.GreyScaleFilterButton.Location = new System.Drawing.Point(171, 487);
-            this.GreyScaleFilterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GreyScaleFilterButton.Margin = new System.Windows.Forms.Padding(4);
             this.GreyScaleFilterButton.Name = "GreyScaleFilterButton";
             this.GreyScaleFilterButton.Size = new System.Drawing.Size(127, 52);
             this.GreyScaleFilterButton.TabIndex = 10;
@@ -160,7 +159,7 @@ namespace GUI
             // 
             this.BlueScaleFilterButton.BackColor = System.Drawing.Color.Snow;
             this.BlueScaleFilterButton.Location = new System.Drawing.Point(328, 487);
-            this.BlueScaleFilterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BlueScaleFilterButton.Margin = new System.Windows.Forms.Padding(4);
             this.BlueScaleFilterButton.Name = "BlueScaleFilterButton";
             this.BlueScaleFilterButton.Size = new System.Drawing.Size(127, 52);
             this.BlueScaleFilterButton.TabIndex = 11;
@@ -171,8 +170,8 @@ namespace GUI
             // SaveImageButton
             // 
             this.SaveImageButton.BackColor = System.Drawing.Color.Ivory;
-            this.SaveImageButton.Location = new System.Drawing.Point(924, 15);
-            this.SaveImageButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SaveImageButton.Location = new System.Drawing.Point(484, 13);
+            this.SaveImageButton.Margin = new System.Windows.Forms.Padding(4);
             this.SaveImageButton.Name = "SaveImageButton";
             this.SaveImageButton.Size = new System.Drawing.Size(127, 52);
             this.SaveImageButton.TabIndex = 12;
@@ -201,7 +200,7 @@ namespace GUI
             // BrightnessCounter
             // 
             this.BrightnessCounter.Location = new System.Drawing.Point(612, 116);
-            this.BrightnessCounter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BrightnessCounter.Margin = new System.Windows.Forms.Padding(4);
             this.BrightnessCounter.Minimum = new decimal(new int[] {
             100,
             0,
@@ -215,7 +214,7 @@ namespace GUI
             // SaturationCounter
             // 
             this.SaturationCounter.Location = new System.Drawing.Point(612, 175);
-            this.SaturationCounter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SaturationCounter.Margin = new System.Windows.Forms.Padding(4);
             this.SaturationCounter.Minimum = new decimal(new int[] {
             100,
             0,
@@ -245,7 +244,7 @@ namespace GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(795, 554);
             this.Controls.Add(this.ContrastCounter);
             this.Controls.Add(this.SaturationCounter);
             this.Controls.Add(this.BrightnessCounter);
@@ -262,7 +261,7 @@ namespace GUI
             this.Controls.Add(this.FlipVerticalButton);
             this.Controls.Add(this.FlipHorizontalButton);
             this.Controls.Add(this.RotateButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ImageDisplay";
             this.Text = "Image Display";
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessCounter)).EndInit();

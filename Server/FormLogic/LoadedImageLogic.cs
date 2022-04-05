@@ -3,6 +3,7 @@ using Server.Observer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 /// <summary>
 /// Author Lucas Brennan & Flynn Osborne
@@ -69,7 +70,7 @@ namespace Server.FormLogic
                 //Sets the InitialDirectory as C
                 openFileDialog.InitialDirectory = "c:\\";
                 //Only allows for Png Files to be loaded into the program
-                //openFileDialog.Filter = "png files (*.png) | *.png" ;
+                //openFileDialog.Filter = "" ;
                 //Filters the Index to what is being requested (png)
                 openFileDialog.FilterIndex = 2;
                 //when called agian the same directory the user left will be loaded
@@ -93,6 +94,30 @@ namespace Server.FormLogic
                 }
 
                 return path;
+            }
+        }
+        /// <summary>
+        /// A Method used to save Images
+        /// </summary>
+        /// <param name="pImage">The Image being saved</param>
+        public void SaveImage(Image pImage) 
+        {
+            // Save Image Code Modified from https://docs.microsoft.com/en-us/dotnet/api/system.drawing.image.save?view=dotnet-plat-ext-6.0 Accessed (10/03/2022)
+            //uses the OpenFileDialog class and INITIALISES it
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "png files (*.png) | *.png";
+                //Sets the InitialDirectory as C
+                saveFileDialog.InitialDirectory = "c:\\";
+                //If the Dialog result is Ok
+                if (saveFileDialog.ShowDialog() == DialogResult.OK) 
+                {
+                    //Saves the File path to path
+                    string path = saveFileDialog.FileName;
+                    //Saves the image to the path
+                    pImage.Save(path);
+                }
+
             }
         }
 

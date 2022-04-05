@@ -32,5 +32,10 @@ namespace Server.FormLogic
         /// </summary>
         /// <param name="pPath">The Path of the image</param>
         void LoadNewImage(string pPath);
+        /// <summary>
+        /// A Method used to save images
+        /// </summary>
+        /// <param name="pImage">The Image being saved</param>
+        void SaveImage(Image pImage);
     }
 }

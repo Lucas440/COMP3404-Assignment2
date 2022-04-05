@@ -31,6 +31,8 @@ namespace COMP3404
 
         IDictionary<IFormLogic, Form> _formDictionary;
 
+        ICommand _saveImageCommand;
+
         public ICommandInvoker Invoker
         {
             get { return _commandInvoker; }
@@ -98,7 +100,10 @@ namespace COMP3404
 
             //Creates a New Command called addImageDisplay using _serviceLocator
             ICommand addImageDisplay = (_serviceLocator.Get<ICommand , ICommandOneParam<Image>>() as IFactory).Get<ICommandOneParam<Image> , CommandOneParam<Image>>();
-
+            //INTIALISES _saveImageCommand using _serviceLocator
+            _saveImageCommand = (_serviceLocator.Get<ICommand, ICommandOneParam<Image>>() as IFactory).Get<ICommandOneParam<Image>, CommandOneParam<Image>>();
+            //Sets the action to tempLogic save image
+            ((ICommandOneParam<Image>)_saveImageCommand).SetAction = ((ILoadedImageLogic)tempLogic).SaveImage;
             //Sets the Action to AddImageDisplayForm
             ((ICommandOneParam<Image>)addImageDisplay).SetAction = AddImageDisplayForm;
             //Intialises the form passing _commandInvoker and addImageDisplay
@@ -124,7 +129,7 @@ namespace COMP3404
             IFormLogic tempLogic = (_serviceLocator.Get<IFormLogic, IImageDisplayLogic>() as IFactory).Get<IFormLogic, ImageDisplayLogic>();
             
             //Intialises tempForm passing pDisplayImage
-            ((ImageDisplay)tempForm).Intialise(pDisplayImage);
+            ((ImageDisplay)tempForm).Intialise(pDisplayImage , _saveImageCommand , Invoker);
 
             //Adds the form and the logic to the dictionary
             _formDictionary.Add(tempLogic, tempForm);
