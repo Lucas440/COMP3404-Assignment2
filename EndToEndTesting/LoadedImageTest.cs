@@ -27,13 +27,12 @@ namespace EndToEndTesting
         {
             #region ARRANGE
             //sets a path for the image
-            string path = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\JavaFish.png";
+            string path = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
 
             //INITALISE a new ILoadedImage called testLogic
             ILoadedImageLogic testLogic = new LoadedImageLogic();
             //Calls LoadNewImage passing the path
             testLogic.LoadNewImage(path);
-            ((LoadedImageLogic)testLogic).LoadNewImage();
             #endregion
 
             #region ACT
@@ -58,27 +57,27 @@ namespace EndToEndTesting
         /// it should load a image from the disk by giving the user a dialog
         /// This test passes when the image is loaded and can be accessed
         /// </summary>
+        [TestMethod]
         public void TestLoadNewImageWithOutPath() 
         {
             #region ARRANGE
             //INITALISE a new ILoadedImage called testLogic
             ILoadedImageLogic testLogic = new LoadedImageLogic();
-            //Calls the LoadNewImage Method
-            string filePath =  (testLogic).LoadNewImage();
             #endregion
             #region ACT
-            //If the loadedimage in test logic is not null
-            if (((LoadedImageLogic)testLogic).GetImage(filePath) != null)
-            #endregion
-            #region ASSERT
+            try
             {
-                //Passes the test
-                Assert.IsTrue(true);
-            }
-            else
-            {
-                //Fails the test
+                //Calls the LoadNewImage Method
+                Image filePath = testLogic.GetImage("");
                 Assert.IsTrue(false);
+
+            }
+            catch (Exception)
+            {
+                #endregion
+                #region ASSERT
+                Assert.IsTrue(true);
+
             }
             #endregion
         }
@@ -94,9 +93,9 @@ namespace EndToEndTesting
             //INITALISE a new ILoadedImage called testLogic
             ILoadedImageLogic testLogic = new LoadedImageLogic();
             //sets a path for a image
-            string testPath1 = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\JavaFish.png";
+            string testPath1 = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
             //sets a path for a image
-            string testPath2 = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\OrangeFish.png";
+            string testPath2 = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\OrangeFish.png";
 
             //Calls LoadNewImage passing the first test path
             testLogic.LoadNewImage(testPath1);

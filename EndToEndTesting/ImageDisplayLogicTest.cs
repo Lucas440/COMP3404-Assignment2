@@ -3,6 +3,7 @@ using System;
 using Moq;
 using System.Drawing;
 using Server.FormLogic;
+using Server.Command;
 
 /// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
@@ -41,18 +42,24 @@ namespace EndToEndTesting
             // SET the image to a variable
             Image testBeforeImage = testLoadedLogic.GetImage(path);
 
-            testDisplayLogic.Initialise(testBeforeImage);
+            testDisplayLogic.Initialise((Image)testBeforeImage.Clone() , new CommandZeroParam() , new CommandInvoker());
 
             #endregion
 
             #region ACT
             // ACTIVATE the RotateButton_Click event
-            Image testAfterImage = testDisplayLogic.RotateButton_Click();
+            testDisplayLogic.RotateButton_Click();
             #endregion
 
             #region ASSERT
-            // ASSERT that the rotated image was returned
-            Assert.IsNotNull(testAfterImage);
+            if (testBeforeImage != testDisplayLogic.DisplayImage) 
+            {
+                Assert.IsTrue(true);
+            }
+            else 
+            {
+                Assert.IsTrue(false);
+            }
             #endregion
         }
     }
