@@ -1,5 +1,6 @@
 ﻿using Server.Command;
 using Server.Observer;
+using Server.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 // AUTHOR: Flynn Osborne & Lucas Brennan
-// DATE: 18/03/2022
+// DATE: 08/04/2022
 
 namespace GUI
 {
@@ -20,16 +21,10 @@ namespace GUI
     /// </summary>
     public partial class LoadedImages : Form , IButtonClickPublisher 
     {
-        // Variables to dictate the size of each button
-        private int _buttonWidth;
-        private int _buttonHeight;
-
-        // A variable to hold a list of all the unique IDs for images
-        private IList<String> _UIDList;
-
-        //DECLARE a ICommandInovker called _commandInvoker
+        // DECLARE a ICommandInovker called _commandInvoker
         ICommandInvoker _commandInvoker;
-        //DECLARE a ICommand called _addImageDisplay
+
+        // DECLARE a ICommand called _addImageDisplay
         ICommand _addImageDisplay;
 
         /// <summary>
@@ -38,9 +33,6 @@ namespace GUI
         public LoadedImages()
         {
             InitializeComponent();
-
-            //INITALISE _UIDList
-            _UIDList = new List<String>();
         }
 
         /// <summary>
@@ -51,7 +43,7 @@ namespace GUI
         public void Initialise(ICommandInvoker pInvoker, ICommand pAddImage)
         {
 
-            //INTIALISE Class variables
+            // INITIALISE Class variables
             //_commandInvoker
             _commandInvoker = pInvoker;
             //_addImageDisplay
@@ -72,9 +64,9 @@ namespace GUI
         {
             // RAISE a new Event
             Image image = NewButtonClick(this , new ButtonClickArgs(){EventArgs = "LoadNewButton" });
-            //Sets the Data in the command to the image returned by the event
+            // SET the Data in the command to the image returned by the event
             ((ICommandOneParam<Image>)_addImageDisplay).SetData = image;
-            //Invokes _addImageDisplay
+            // INVOKE _addImageDisplay
             _commandInvoker.Invoke(_addImageDisplay);
 
             // STORE the image in the collection
@@ -90,10 +82,25 @@ namespace GUI
             // CREATE a button to hold the image
             Button button = new Button();
 
+            // IF an image was not selected:
+            if (loadedImage == null)
+            {
+                // SET loaded image to a default option
+                loadedImage = Bitmap.FromFile("../../../../COMP3404-Assignment2-master/COMP3404/image-not-found.png");
+            }
+
             // SET the button to hold the image
-            button.Height = loadedImage.Height;
-            button.Width = loadedImage.Width;
-            button.Image = loadedImage;
+            try
+            {
+                button.Height = loadedImage.Height;
+                button.Width = loadedImage.Width;
+                button.Image = loadedImage;
+            }
+            catch (Exception)
+            {
+                // THROW an exception if there is no image
+                throw new InvalidFileTypeException("Need to load an image!");
+            }
 
             // SET the ImageButton_Click method to the button's Click event 
             button.Click += ImageButton_Click;
