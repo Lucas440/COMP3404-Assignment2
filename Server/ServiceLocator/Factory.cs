@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date: 04/03/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 04/03/22
 /// </summary>
 namespace Server.ServiceLocator
 {
@@ -16,14 +16,14 @@ namespace Server.ServiceLocator
     public class Factory : IFactory
     {
         /// <summary>
-        /// A Class that returns a new instence of class type C
+        /// A method that returns a new instance of class type C
         /// </summary>
-        /// <typeparam name="T">A Type defined when the class is intitalised</typeparam>
+        /// <typeparam name="T">A type defined when the class is intitalised</typeparam>
         /// <typeparam name="C">A child class of class T</typeparam>
-        /// <returns>A new intence of T</returns>
+        /// <returns>A new instance of T</returns>
         public T Get<T , C>() where C: T, new() 
         {
-            //Retuns a new Class C
+            // RETURN a new instance of the class
             return new C();
         }
     }
