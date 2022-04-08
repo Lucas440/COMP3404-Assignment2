@@ -20,10 +20,16 @@ namespace GUI
     /// </summary>
     public partial class LoadedImages : Form , IButtonClickPublisher 
     {
-        // DECLARE a variable to hold a command invoker
-        ICommandInvoker _commandInvoker;
+        // Variables to dictate the size of each button
+        private int _buttonWidth;
+        private int _buttonHeight;
 
-        // DECLARE a variable to hold a command to add an ImageDisplay form
+        // A variable to hold a list of all the unique IDs for images
+        private IList<String> _UIDList;
+
+        //DECLARE a ICommandInovker called _commandInvoker
+        ICommandInvoker _commandInvoker;
+        //DECLARE a ICommand called _addImageDisplay
         ICommand _addImageDisplay;
 
         /// <summary>
@@ -32,6 +38,9 @@ namespace GUI
         public LoadedImages()
         {
             InitializeComponent();
+
+            //INITALISE _UIDList
+            _UIDList = new List<String>();
         }
 
         /// <summary>
@@ -41,6 +50,12 @@ namespace GUI
         /// <param name="pAddImage">A ICommand used to AddImages</param>
         public void Initialise(ICommandInvoker pInvoker, ICommand pAddImage)
         {
+
+            //INTIALISE Class variables
+            //_commandInvoker
+            _commandInvoker = pInvoker;
+            //_addImageDisplay
+
             // SET the command invoker
             _commandInvoker = pInvoker;
 
@@ -57,7 +72,9 @@ namespace GUI
         {
             // RAISE a new Event
             Image image = NewButtonClick(this , new ButtonClickArgs(){EventArgs = "LoadNewButton" });
+            //Sets the Data in the command to the image returned by the event
             ((ICommandOneParam<Image>)_addImageDisplay).SetData = image;
+            //Invokes _addImageDisplay
             _commandInvoker.Invoke(_addImageDisplay);
 
             // STORE the image in the collection
@@ -90,6 +107,7 @@ namespace GUI
         /// </summary>
         /// <param name="sender">The button that called the method</param>
         /// <param name="e">The event arguments</param>
+
         private void ImageButton_Click(object sender, EventArgs e)
         {
             // SPECIFY which button activated the event
