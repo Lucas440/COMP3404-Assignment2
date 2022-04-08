@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date 26/03/2022
+/// AUTHOR: Lucas Brennan
+/// DATE: 26/03/2022
 /// </summary>
 namespace Server.Observer
 {
     /// <summary>
-    /// An interface that publishes button clicks
+    /// An interface for classes that publish button clicks
     /// </summary>
     public interface IButtonClickPublisher
     {
         /// <summary>
-        /// Subscribes a listener
+        /// A method to subscribe a listener
         /// </summary>
-        /// <param name="listener">The Listener being subscribed</param>
+        /// <param name="listener">The listener being subscribed</param>
         void Subscribe(IButtonClickListener listener);
+
         /// <summary>
-        /// UnSubscribes a Listener
+        /// A method to unsubscribe a listener
         /// </summary>
-        /// <param name="listener">The Listener being Unsubscribed</param>
+        /// <param name="listener">The listener being unsubscribed</param>
         void UnSubscribe(IButtonClickListener listener);
     }
 }
