@@ -59,17 +59,17 @@ namespace Server.FormLogic
         /// <summary>
         /// A Method used to Flip images
         /// </summary>
-        /// <param name="option">The option the image is being flipped (Virtical or Horizontal)</param>
-        public void FlipButton_Click(string option)
+        /// <param name="pOption">The option the image is being flipped (Virtical or Horizontal)</param>
+        public void FlipButton_Click(string pOption)
         {
             //If the vertical Button is clicked 
-            if (option == "vertical")
+            if (pOption == "vertical")
             {
                 //Flips the Image on the Y axis
                 _imageDisplayed.RotateFlip(RotateFlipType.RotateNoneFlipY);
             }
             //If the horizontal Button is clicked 
-            else if (option == "horizontal")
+            else if (pOption == "horizontal")
             {
                 //Flips the image on the X axis
                 _imageDisplayed.RotateFlip(RotateFlipType.RotateNoneFlipX);
@@ -79,17 +79,16 @@ namespace Server.FormLogic
         /// <summary>
         /// A Method used to change the Contrast, Brightness and Saturation
         /// </summary>
-        /// <param name="option">The Option of the Change, Contrast, Brightness or Saturation</param>
+        /// <param name="pOption">The Option of the Change, Contrast, Brightness or Saturation</param>
         /// <param name="value">The Value of the change (Determaines the strength of the change)</param>
-        public void ChangeButton_Click(string option, int pValue)
+        public void ChangeButton_Click(string pOption, int pValue)
         {
             //If the Brightness value is changed
-            if (option == "brightness")
+            if (pOption == "brightness")
             {
                 //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/ Accessed 01/04/2022
                 //Original code by Hirendra Sisodiya 
 
-                #region Brightness code by Hiremdra Sisodiya
                 //DECLARES a float called value which is set to pValue * 0.01f
                 float value = pValue * 0.01f;
                 //Sets an array of colour matrixs
@@ -118,15 +117,13 @@ namespace Server.FormLogic
                 _g.DrawImage(_imageDisplayed, new Rectangle(0, 0, bm_dest.Width + 1, bm_dest.Height + 1), 0, 0, bm_dest.Width + 1, bm_dest.Height + 1, GraphicsUnit.Pixel, imageAttributes);
                 //Sets _imageDisplayed to bm_dest
                 _imageDisplayed = bm_dest;
-                #endregion
 
             }
             //If the contrast value is changed
-            else if (option == "contrast")
+            else if (pOption == "contrast")
             {
                 //Contrast adjustment code Modified from https://www.c-sharpcorner.com/uploadfile/75a48f/control-image-contrast-using-asp-net/ Accessed 05/04/2022
                 //Original code by Sourabh Somani
-                #region Contrast Code By Sourabh Somani
 
                 //Sets the contrast value to pValue
                 double contrast = pValue;
@@ -217,15 +214,14 @@ namespace Server.FormLogic
                 }
                 //Sets _imageDisplayed to bMap
                 _imageDisplayed = (Bitmap)bMap.Clone();
-                #endregion
+
             }
             //If the saturation value is changed
-            else if (option == "saturation")
+            else if (pOption == "saturation")
             {
                 //Saturation adjustment code Modified from https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix Accessed 01/04/2022
                 //Original code by Henry Minute
 
-                #region Saturation Code By Henry Minute
                 //Sets the RGB Weights
                 float rWeight = 0.3086f;
                 float gWeight = 0.6094f;
@@ -269,7 +265,6 @@ namespace Server.FormLogic
 
                 //Sets _imageDisplay to curBitmap
                 _imageDisplayed = curBitmap;
-                #endregion
 
             }
         }
@@ -277,16 +272,14 @@ namespace Server.FormLogic
         /// <summary>
         /// A Method that applys filters, Sipea, BlueScale, GreyScale and PhotoNegative
         /// </summary>
-        /// <param name="option">The option choosen, Sipea, BlueScale, GreyScale or PhotoNegative</param>
-        public void FilterButton_Click(string option)
+        /// <param name="pOption">The option choosen, Sipea, BlueScale, GreyScale or PhotoNegative</param>
+        public void FilterButton_Click(string pOption)
         {
             //If the Photo negative button is clicked
-            if (option == "photo negative")
+            if (pOption == "photo negative")
             {
                 ///Photo Negative code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
-
-                #region Photo Negative Code by Yusuf Shakeel
 
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
@@ -314,18 +307,13 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
-
-                    #endregion
                 }
             }
             //If the sepia button is clicked
-            else if (option == "sepia")
+            else if (pOption == "sepia")
             {
-                ///Sepia code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-sepia-image-in-csharp-using-visual-studio Accessed 05/04/2022
-                //Original code by Yusuf Shakeel
-                //
-                #region Sepia Code by Yusuf Shakeel
-
+                ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-sepia-image-in-csharp-using-visual-studio Accessed 05/04/2022
+                //Original code by Yusuf Shakeel                
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
 
@@ -392,17 +380,13 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
-
-                    #endregion
                 }
             }
             //If the greyScale button is clicked
-            else if (option == "greyscale")
+            else if (pOption == "greyscale")
             {
                 ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
-
-                #region GreyScale Code by Yusuf Shakeel
 
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
@@ -430,16 +414,13 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
-                    #endregion
                 }
             }
             //If the bluescale button is clicked
-            else if (option == "bluescale")
+            else if (pOption == "bluescale")
             {
                 ///BlueScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
-
-                #region BlueScale Code by Yusuf Shakeel
 
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
@@ -474,7 +455,6 @@ namespace Server.FormLogic
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
                 }
-                #endregion
             }
         }
 
