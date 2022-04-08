@@ -140,18 +140,24 @@ namespace Server.FormLogic
         /// <returns>An image loaded</returns>
         public Image NewImageGet(object source, ButtonClickArgs args) 
         {
+            //DECLARE a new string called path
             string path = "";
+            //Trys the followng
             try
             {
+                //sets path to what is returned by _loadedImages
                 path = LoadNewImage();
+                //returns the Image in _loadedImages
                 return _loadedImages[path];
             }
+            //catches any Exception
             catch (Exception)
             {
+                //Throws a new NullFilePathException
                 //throw new NullFilePathException("The file path is null!");
             }
-
-            return _loadedImages[path];
+            //Returns null
+            return null;
         }
 
     }

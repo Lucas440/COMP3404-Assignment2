@@ -42,6 +42,7 @@ namespace Server.FormLogic
         /// </summary>
         public void NewNoteButtonClick() 
         {
+            //Invokes the command
             _commandInvoker.Invoke(_command);
         }
 
@@ -54,6 +55,7 @@ namespace Server.FormLogic
         /// <param name="args">the event argument</param>
         public void NewButtonClick(object source, ButtonClickArgs args) 
         {
+            //Invokes the command
             _commandInvoker.Invoke(_command);
         }
 

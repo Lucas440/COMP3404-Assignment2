@@ -29,15 +29,20 @@ namespace COMP3404
         //DECLARE a ICommandInvoker called _commandInvoker
         public ICommandInvoker _commandInvoker;
 
+        //A dictionary that stores Forms with the Key IFormLogic, called _formDictionary
         IDictionary<IFormLogic, Form> _formDictionary;
-
+        //DECLARE a ICommand called _saveImageCommand
         ICommand _saveImageCommand;
-
+        /// <summary>
+        /// A Property that returns the command invoker
+        /// </summary>
         public ICommandInvoker Invoker
         {
             get { return _commandInvoker; }
         }
-
+        /// <summary>
+        /// A Property that returns the ServiceLocator
+        /// </summary>
         public IServiceLocator Locator
         {
             get { return _serviceLocator; }

@@ -62,12 +62,16 @@ namespace Server.FormLogic
         /// <param name="option">The option the image is being flipped (Virtical or Horizontal)</param>
         public void FlipButton_Click(string option)
         {
+            //If the vertical Button is clicked 
             if (option == "vertical")
             {
+                //Flips the Image on the Y axis
                 _imageDisplayed.RotateFlip(RotateFlipType.RotateNoneFlipY);
             }
+            //If the horizontal Button is clicked 
             else if (option == "horizontal")
             {
+                //Flips the image on the X axis
                 _imageDisplayed.RotateFlip(RotateFlipType.RotateNoneFlipX);
             }
         }
@@ -79,6 +83,7 @@ namespace Server.FormLogic
         /// <param name="value">The Value of the change (Determaines the strength of the change)</param>
         public void ChangeButton_Click(string option, int pValue)
         {
+            //If the Brightness value is changed
             if (option == "brightness")
             {
                 //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/ Accessed 01/04/2022
@@ -114,6 +119,7 @@ namespace Server.FormLogic
                 _imageDisplayed = bm_dest;
 
             }
+            //If the contrast value is changed
             else if (option == "contrast")
             {
                 //Contrast adjustment code Modified from https://www.c-sharpcorner.com/uploadfile/75a48f/control-image-contrast-using-asp-net/ Accessed 05/04/2022
@@ -210,6 +216,7 @@ namespace Server.FormLogic
                 _imageDisplayed = (Bitmap)bMap.Clone();
 
             }
+            //If the saturation value is changed
             else if (option == "saturation")
             {
                 //Saturation adjustment code Modified from https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix Accessed 01/04/2022
@@ -268,6 +275,7 @@ namespace Server.FormLogic
         /// <param name="option">The option choosen, Sipea, BlueScale, GreyScale or PhotoNegative</param>
         public void FilterButton_Click(string option)
         {
+            //If the Photo negative button is clicked
             if (option == "photo negative")
             {
                 ///Photo Negative code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
@@ -301,6 +309,7 @@ namespace Server.FormLogic
                     _imageDisplayed = tempImage;
                 }
             }
+            //If the sepia button is clicked
             else if (option == "sepia")
             {
                 ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-sepia-image-in-csharp-using-visual-studio Accessed 05/04/2022
@@ -373,6 +382,7 @@ namespace Server.FormLogic
                     _imageDisplayed = tempImage;
                 }
             }
+            //If the greyScale button is clicked
             else if (option == "greyscale")
             {
                 ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
@@ -406,6 +416,7 @@ namespace Server.FormLogic
                     _imageDisplayed = tempImage;
                 }
             }
+            //If the bluescale button is clicked
             else if (option == "bluescale")
             {
                 ///BlueScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022

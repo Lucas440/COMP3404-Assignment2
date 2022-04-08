@@ -21,7 +21,7 @@ namespace GUI
     /// </summary>
     public partial class ImageDisplay : Form
     {
-        //
+        // DECLARE a IImageDisplayLogic called _logic
         private IImageDisplayLogic _logic;
 
 

@@ -12,15 +12,18 @@ using Server.FormLogic;
 using Server.Command;
 using Server.Observer;
 
-// AUTHOR: Flynn Osborne
+// AUTHOR: Flynn Osborne & Lucas Brennan
 // DATE: 18/03/2022
 
 namespace GUI
 {
+    /// <summary>
+    /// A Class used to display the Main menu to the user
+    /// </summary>
     public partial class MainMenu : Form, IButtonClickPublisher 
     {
         /// <summary>
-        /// 
+        /// The Default Constructor
         /// </summary>
         public MainMenu()
         {
@@ -28,10 +31,10 @@ namespace GUI
         }
 
         /// <summary>
-        /// 
+        /// A Method that responds to when the NewNoteButton is Clicked
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object that raised the event</param>
+        /// <param name="e">The event argument</param>
         private void NewNoteButton_Click(object sender, EventArgs e)
         {
             //Raises a new Event
