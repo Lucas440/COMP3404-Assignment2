@@ -43,7 +43,7 @@ namespace EndToEndTesting
                 Assert.IsTrue(false) ;
             }
             //Catches an InvalidFilePathException
-            catch (InvalidFilePathException e) 
+            catch (InvalidFilePathException) 
             {
                 //This is true as the Exception is thrown
                 Assert.IsTrue(true);

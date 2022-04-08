@@ -42,6 +42,7 @@ namespace EndToEndTesting
             // SET the image to a variable
             Image testBeforeImage = testLoadedLogic.GetImage(path);
 
+            //Initalises the Logic passing a clone of the image, a new command and commandinvoker
             testDisplayLogic.Initialise((Image)testBeforeImage.Clone() , new CommandZeroParam() , new CommandInvoker());
 
             #endregion
@@ -52,12 +53,15 @@ namespace EndToEndTesting
             #endregion
 
             #region ASSERT
+            //If the images are different this is true
             if (testBeforeImage != testDisplayLogic.DisplayImage) 
             {
+                //the test passes
                 Assert.IsTrue(true);
             }
             else 
             {
+                //the test fails
                 Assert.IsTrue(false);
             }
             #endregion
