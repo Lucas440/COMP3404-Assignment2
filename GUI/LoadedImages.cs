@@ -20,93 +20,84 @@ namespace GUI
     /// </summary>
     public partial class LoadedImages : Form , IButtonClickPublisher 
     {
-
-        // Variables to dictate the size of each button
-        private int _buttonWidth;
-        private int _buttonHeight;
-
-        // A variable to hold a list of all the unique IDs for images
-        private IList<String> _UIDList;
-
-        //DECLARE a ICommandInovker called _commandInvoker
+        // DECLARE a variable to hold a command invoker
         ICommandInvoker _commandInvoker;
-        //DECLARE a ICommand called _addImageDisplay
+
+        // DECLARE a variable to hold a command to add an ImageDisplay form
         ICommand _addImageDisplay;
 
         /// <summary>
-        /// The Default Constructor
+        /// The constructor for the LoadedImages form
         /// </summary>
         public LoadedImages()
         {
             InitializeComponent();
-            //INITALISE _UIDList
-            _UIDList = new List<String>();
         }
 
         /// <summary>
-        /// A Method that Initalises the Class
+        /// The method used to initialise the form
         /// </summary>
         /// <param name="pInvoker">A CommandInvoker</param>
         /// <param name="pAddImage">A ICommand used to AddImages</param>
         public void Initialise(ICommandInvoker pInvoker, ICommand pAddImage)
         {
-
-            //INTIALISE Class variables
-            //_commandInvoker
+            // SET the command invoker
             _commandInvoker = pInvoker;
-            //_addImageDisplay
+
+            // SET the AddImageDisplay command
             _addImageDisplay = pAddImage;
-
-
-            // This process repeats for each image in the collection
-            foreach (string ID in _UIDList)
-            {
-                // Create a new button
-                Button button = new Button();
-
-                // Load the image from the server
-                //Image loadedImage = _server.GetImage(ID, _buttonWidth, _buttonHeight);
-
-                // Set the size of the button
-                //button.Height = loadedImage.Height;
-                //button.Width = loadedImage.Width;
-
-                // Show the image and the UID on the button
-                //button.Image = loadedImage;
-                button.Text = ID;
-
-                // Set the Click method to the button's Click event 
-                button.Click += ImageButton_Click;
-
-                // Add the button to the menu
-                ImageMenu.Controls.Add(button);
-            }
         }
 
         /// <summary>
-        /// A Method that responds to when the LoadNewImagesButton is Clicked
+        /// The method that loads a new image from computer to the software
         /// </summary>
-        /// <param name="sender">The Object that raised the event</param>
-        /// <param name="e">The Event argument</param>
+        /// <param name="sender">The object that called the event</param>
+        /// <param name="e">The event arguments</param>
         private void LoadNewImageButton_Click(object sender, EventArgs e)
         {
-            //Raises a new Event
+            // RAISE a new Event
             Image image = NewButtonClick(this , new ButtonClickArgs(){EventArgs = "LoadNewButton" });
-            //Sets the Data in the command to the image returned by the event
             ((ICommandOneParam<Image>)_addImageDisplay).SetData = image;
-            //Invokes _addImageDisplay
             _commandInvoker.Invoke(_addImageDisplay);
+
+            // STORE the image in the collection
+            AddImageToMenu(image);
         }
 
         /// <summary>
-        /// A Method that responds to when a ImageButton is clicked
+        /// This method stores a loaded image in the form's collection
         /// </summary>
-        /// <param name="sender">The Object that raised the event</param>
-        /// <param name="e">the event argument</param>
+        /// <param name="loadedImage">The image that is added to the collection</param>
+        private void AddImageToMenu(Image loadedImage)
+        {
+            // CREATE a button to hold the image
+            Button button = new Button();
+
+            // SET the button to hold the image
+            button.Height = loadedImage.Height;
+            button.Width = loadedImage.Width;
+            button.Image = loadedImage;
+
+            // SET the ImageButton_Click method to the button's Click event 
+            button.Click += ImageButton_Click;
+
+            // ADD the button to the menu
+            ImageMenu.Controls.Add(button);
+        }
+
+        /// <summary>
+        /// This method loads an ImageDisplay form for an already loaded image
+        /// </summary>
+        /// <param name="sender">The button that called the method</param>
+        /// <param name="e">The event arguments</param>
         private void ImageButton_Click(object sender, EventArgs e)
         {
-            // Specify which button activated the event
+            // SPECIFY which button activated the event
             Button clicked = sender as Button;
+
+            // RAISE a new Event
+            ((ICommandOneParam<Image>)_addImageDisplay).SetData = clicked.Image;
+            _commandInvoker.Invoke(_addImageDisplay);
 
         }
 
