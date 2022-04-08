@@ -63,6 +63,7 @@ namespace Server.FormLogic
         /// Modified from https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=windowsdesktop-6.0 Accessed (10/03/2022)
         public string LoadNewImage()
         {
+            #region Code from Microsoft
             string path = "";
             //uses the OpenFileDialog class and INITIALISES it
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -92,6 +93,7 @@ namespace Server.FormLogic
                         throw new InvalidFileTypeException("Only Image Files can be Loaded!");
                     }
                 }
+                #endregion
 
                 return path;
             }
@@ -103,6 +105,7 @@ namespace Server.FormLogic
         public void SaveImage(Image pImage) 
         {
             // Save Image Code Modified from https://docs.microsoft.com/en-us/dotnet/api/system.drawing.image.save?view=dotnet-plat-ext-6.0 Accessed (10/03/2022)
+            #region Code From MicroSoft
             //uses the OpenFileDialog class and INITIALISES it
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
@@ -119,6 +122,7 @@ namespace Server.FormLogic
                 }
 
             }
+            #endregion
         }
 
         // ------------------------------------------- IButtonClickListener implentation ----------------------------------------

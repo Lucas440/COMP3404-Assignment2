@@ -89,6 +89,7 @@ namespace Server.FormLogic
                 //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/ Accessed 01/04/2022
                 //Original code by Hirendra Sisodiya 
 
+                #region Brightness code by Hiremdra Sisodiya
                 //DECLARES a float called value which is set to pValue * 0.01f
                 float value = pValue * 0.01f;
                 //Sets an array of colour matrixs
@@ -117,6 +118,7 @@ namespace Server.FormLogic
                 _g.DrawImage(_imageDisplayed, new Rectangle(0, 0, bm_dest.Width + 1, bm_dest.Height + 1), 0, 0, bm_dest.Width + 1, bm_dest.Height + 1, GraphicsUnit.Pixel, imageAttributes);
                 //Sets _imageDisplayed to bm_dest
                 _imageDisplayed = bm_dest;
+                #endregion
 
             }
             //If the contrast value is changed
@@ -124,6 +126,7 @@ namespace Server.FormLogic
             {
                 //Contrast adjustment code Modified from https://www.c-sharpcorner.com/uploadfile/75a48f/control-image-contrast-using-asp-net/ Accessed 05/04/2022
                 //Original code by Sourabh Somani
+                #region Contrast Code By Sourabh Somani
 
                 //Sets the contrast value to pValue
                 double contrast = pValue;
@@ -214,7 +217,7 @@ namespace Server.FormLogic
                 }
                 //Sets _imageDisplayed to bMap
                 _imageDisplayed = (Bitmap)bMap.Clone();
-
+                #endregion
             }
             //If the saturation value is changed
             else if (option == "saturation")
@@ -222,6 +225,7 @@ namespace Server.FormLogic
                 //Saturation adjustment code Modified from https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix Accessed 01/04/2022
                 //Original code by Henry Minute
 
+                #region Saturation Code By Henry Minute
                 //Sets the RGB Weights
                 float rWeight = 0.3086f;
                 float gWeight = 0.6094f;
@@ -265,6 +269,7 @@ namespace Server.FormLogic
 
                 //Sets _imageDisplay to curBitmap
                 _imageDisplayed = curBitmap;
+                #endregion
 
             }
         }
@@ -280,6 +285,8 @@ namespace Server.FormLogic
             {
                 ///Photo Negative code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
+
+                #region Photo Negative Code by Yusuf Shakeel
 
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
@@ -307,13 +314,18 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
+
+                    #endregion
                 }
             }
             //If the sepia button is clicked
             else if (option == "sepia")
             {
-                ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-sepia-image-in-csharp-using-visual-studio Accessed 05/04/2022
-                //Original code by Yusuf Shakeel                
+                ///Sepia code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-sepia-image-in-csharp-using-visual-studio Accessed 05/04/2022
+                //Original code by Yusuf Shakeel
+                //
+                #region Sepia Code by Yusuf Shakeel
+
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
 
@@ -380,6 +392,8 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
+
+                    #endregion
                 }
             }
             //If the greyScale button is clicked
@@ -387,6 +401,8 @@ namespace Server.FormLogic
             {
                 ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
+
+                #region GreyScale Code by Yusuf Shakeel
 
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
@@ -414,6 +430,7 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
+                    #endregion
                 }
             }
             //If the bluescale button is clicked
@@ -421,6 +438,8 @@ namespace Server.FormLogic
             {
                 ///BlueScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
+
+                #region BlueScale Code by Yusuf Shakeel
 
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
@@ -455,6 +474,7 @@ namespace Server.FormLogic
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
                 }
+                #endregion
             }
         }
 
