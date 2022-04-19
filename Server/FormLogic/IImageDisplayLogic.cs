@@ -58,7 +58,11 @@ namespace Server.FormLogic
         /// A Method used to save the image
         /// </summary>
         void SaveImageButton_Click();
-
+        /// <summary>
+        /// A Method used to scale the image
+        /// </summary>
+        /// <param name="value">The scale value</param>
+        void ScaleImage(int value);
 
     }
 }

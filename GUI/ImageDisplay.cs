@@ -201,5 +201,18 @@ namespace GUI
             //Draws focus to imageholder
             ImageHolder.Focus();
         }
+        /// <summary>
+        /// A Method that responds to when the bar on ImageScale_Bar changes
+        /// </summary>
+        /// <param name="sender">The Object that sent the event</param>
+        /// <param name="e">The event argument</param>
+        private void ImageScale_Bar_Scroll(object sender, EventArgs e)
+        {
+            _logic.ScaleImage(ImageScale_Bar.Value);
+            //Sets the Displayed image to the image in _logic
+            ImageHolder.Image = _logic.DisplayImage;
+            //Draws focus to the image holder
+            ImageHolder.Focus();
+        }
     }
 }

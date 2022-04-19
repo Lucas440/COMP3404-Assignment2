@@ -45,9 +45,12 @@ namespace GUI
             this.BrightnessCounter = new System.Windows.Forms.NumericUpDown();
             this.SaturationCounter = new System.Windows.Forms.NumericUpDown();
             this.ContrastCounter = new System.Windows.Forms.NumericUpDown();
+            this.ImageScaleButton = new System.Windows.Forms.Button();
+            this.ImageScale_Bar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SaturationCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ContrastCounter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageScale_Bar)).BeginInit();
             this.SuspendLayout();
             // 
             // RotateButton
@@ -239,12 +242,34 @@ namespace GUI
             this.ContrastCounter.TabIndex = 18;
             this.ContrastCounter.ValueChanged += new System.EventHandler(this.ContrastCounter_ValueChanged);
             // 
+            // ImageScaleButton
+            // 
+            this.ImageScaleButton.BackColor = System.Drawing.Color.LightCyan;
+            this.ImageScaleButton.Location = new System.Drawing.Point(484, 279);
+            this.ImageScaleButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageScaleButton.Name = "ImageScaleButton";
+            this.ImageScaleButton.Size = new System.Drawing.Size(100, 52);
+            this.ImageScaleButton.TabIndex = 19;
+            this.ImageScaleButton.Text = "Scale Image";
+            this.ImageScaleButton.UseVisualStyleBackColor = false;
+            // 
+            // ImageScale_Bar
+            // 
+            this.ImageScale_Bar.Location = new System.Drawing.Point(612, 289);
+            this.ImageScale_Bar.Name = "ImageScale_Bar";
+            this.ImageScale_Bar.Size = new System.Drawing.Size(160, 56);
+            this.ImageScale_Bar.TabIndex = 20;
+            this.ImageScale_Bar.Value = 5;
+            this.ImageScale_Bar.Scroll += new System.EventHandler(this.ImageScale_Bar_Scroll);
+            // 
             // ImageDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(795, 554);
+            this.Controls.Add(this.ImageScale_Bar);
+            this.Controls.Add(this.ImageScaleButton);
             this.Controls.Add(this.ContrastCounter);
             this.Controls.Add(this.SaturationCounter);
             this.Controls.Add(this.BrightnessCounter);
@@ -267,6 +292,7 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SaturationCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ContrastCounter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageScale_Bar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +316,8 @@ namespace GUI
         private System.Windows.Forms.NumericUpDown BrightnessCounter;
         private System.Windows.Forms.NumericUpDown SaturationCounter;
         private System.Windows.Forms.NumericUpDown ContrastCounter;
+        private System.Windows.Forms.Button ImageScaleButton;
+        private System.Windows.Forms.TrackBar ImageScale_Bar;
     }
 }
 

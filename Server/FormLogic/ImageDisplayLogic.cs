@@ -1,6 +1,7 @@
 ﻿using Server.Command;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
 // AUTHOR: Lucas Brennan & Flynn Osborne
@@ -88,7 +89,7 @@ namespace Server.FormLogic
             {
                 //Brightness adjustment code Modified from http://www.authorcode.com/making-image-editing-tool-in-c-brightness-of-an-image/ Accessed 01/04/2022
                 //Original code by Hirendra Sisodiya 
-
+                #region Code By Hirendra Sisodiya 
                 //DECLARES a float called value which is set to pValue * 0.01f
                 float value = pValue * 0.01f;
                 //Sets an array of colour matrixs
@@ -117,14 +118,14 @@ namespace Server.FormLogic
                 _g.DrawImage(_imageDisplayed, new Rectangle(0, 0, bm_dest.Width + 1, bm_dest.Height + 1), 0, 0, bm_dest.Width + 1, bm_dest.Height + 1, GraphicsUnit.Pixel, imageAttributes);
                 //Sets _imageDisplayed to bm_dest
                 _imageDisplayed = bm_dest;
-
+                #endregion
             }
             //If the contrast value is changed
             else if (pOption == "contrast")
             {
                 //Contrast adjustment code Modified from https://www.c-sharpcorner.com/uploadfile/75a48f/control-image-contrast-using-asp-net/ Accessed 05/04/2022
                 //Original code by Sourabh Somani
-
+                #region code by Sourabh Somani
                 //Sets the contrast value to pValue
                 double contrast = pValue;
                 //Creates a new temp Bitmap
@@ -214,14 +215,14 @@ namespace Server.FormLogic
                 }
                 //Sets _imageDisplayed to bMap
                 _imageDisplayed = (Bitmap)bMap.Clone();
-
+                #endregion
             }
             //If the saturation value is changed
             else if (pOption == "saturation")
             {
                 //Saturation adjustment code Modified from https://www.codeproject.com/Tips/78995/Image-colour-manipulation-with-ColorMatrix Accessed 01/04/2022
                 //Original code by Henry Minute
-
+                #region Code by Henry Minute
                 //Sets the RGB Weights
                 float rWeight = 0.3086f;
                 float gWeight = 0.6094f;
@@ -265,6 +266,7 @@ namespace Server.FormLogic
 
                 //Sets _imageDisplay to curBitmap
                 _imageDisplayed = curBitmap;
+                #endregion
 
             }
         }
@@ -280,7 +282,7 @@ namespace Server.FormLogic
             {
                 ///Photo Negative code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
-
+                #region code by Yusuf Shakeel
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
 
@@ -307,13 +309,15 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
+                    #endregion
                 }
             }
             //If the sepia button is clicked
             else if (pOption == "sepia")
             {
                 ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-sepia-image-in-csharp-using-visual-studio Accessed 05/04/2022
-                //Original code by Yusuf Shakeel                
+                //Original code by Yusuf Shakeel
+                #region code by Yusuf Shakeel
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
 
@@ -380,6 +384,7 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
+                    #endregion
                 }
             }
             //If the greyScale button is clicked
@@ -387,7 +392,7 @@ namespace Server.FormLogic
             {
                 ///GreyScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
-
+                #region code by Yusuf Shakeel
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
 
@@ -414,6 +419,7 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
+                    #endregion
                 }
             }
             //If the bluescale button is clicked
@@ -421,7 +427,7 @@ namespace Server.FormLogic
             {
                 ///BlueScale code Modified from https://dyclassroom.com/csharp-project/how-to-convert-a-color-image-into-a-negative-image-in-csharp-using-visual-studio Accessed 05/04/2022
                 //Original code by Yusuf Shakeel
-
+                #region code by Yusuf Shakeel
                 //Clones _imageDisplayed to tempImage
                 Bitmap tempImage = (Bitmap)((Bitmap)_imageDisplayed).Clone();
 
@@ -454,8 +460,56 @@ namespace Server.FormLogic
                     }
                     //Set _imageDisplayed to tempImage
                     _imageDisplayed = tempImage;
+                    #endregion
                 }
             }
+        }
+        /// <summary>
+        /// A Method used to scale the image
+        /// </summary>
+        /// <param name="value">The scale value</param>
+        public void ScaleImage(int value) 
+        {
+            ///Scale code Modified from https://stackoverflow.com/questions/1922040/how-to-resize-an-image-c-sharp Accessed 19/04/2022
+            //Original code by User mpen
+            #region code by user mpen
+            try
+            {
+                // how much the image should scale
+                double scaler = (value / 5.0);
+                //the width of the new image
+                int resizeWidth = (int)(_imageDisplayed.Width * scaler);
+                //the hight of the new image
+                int reseizeHight = (int)(_imageDisplayed.Height * scaler);
+                //A rectangle to contain the image
+                var rect = new Rectangle(0, 0, resizeWidth, reseizeHight);
+                //an empty bitmap of the resize paramiters
+                var destImage = new Bitmap(resizeWidth, reseizeHight);
+                //Resets the resolution
+                destImage.SetResolution(_imageDisplayed.HorizontalResolution, _imageDisplayed.VerticalResolution);
+                //using the varible graphics from the destination image
+                using (var graphics = Graphics.FromImage(destImage))
+                {
+                    //Sets the quality of the image to hight Quality
+                    graphics.CompositingMode = CompositingMode.SourceCopy;
+                    graphics.CompositingQuality = CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.SmoothingMode = SmoothingMode.HighQuality;
+                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    //using the warpMode variable
+                    using (var warpMode = new ImageAttributes())
+                    {
+                        //Sets the mode to Bilinear
+                        warpMode.SetWrapMode((WrapMode)WarpMode.Bilinear);
+                        //Draws the image
+                        graphics.DrawImage(_imageDisplayed, rect, 0, 0, _imageDisplayed.Width, _imageDisplayed.Height, GraphicsUnit.Pixel, warpMode);
+                    }
+                }
+                //Sets the displayed image to the destImage
+                _imageDisplayed = destImage;
+            }
+            catch (Exception) { }
+            #endregion
         }
 
         /// <summary>
