@@ -5,41 +5,48 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+/// <summary>
+/// AUTHOR: Lucas Brennan
+/// DATE: 21/04/2022
+/// </summary>
+
 namespace EndToEndTesting
 {
     /// <summary>
-    /// A Test class used to Test the InvalidFileType Exception
+    /// A Test class used to test the InvalidFileType exception
     /// </summary>
     [TestClass]
     public class InvaildFileTypeTest
     {
 
         /// <summary>
-        /// This method tests if the InvalidFileType Exception is thrown when a incorrect file type is loaded into the 
-        /// LoadedImageLogic
-        /// this test will pass if the Exception is thrown
+        /// This method tests whether the InvalidFileType Exception is thrown when a file of an incorrect type is loaded.
+        /// The test will pass if the exception is thrown.
+        /// 
+        /// NOTE: To pass the test, the tester must select a file that is not a .png.
         /// </summary>
         [TestMethod]
         public void TestIfExceptionIsThrown()
         {
+
             #region ARRANGE
-            //DECLARES and INITALISES a new ILoadedImageLogic called testLogic
+            // DECLARE and INITIALISE a new ILoadedImageLogic called testLogic
             ILoadedImageLogic testLogic = new LoadedImageLogic();
             #endregion
             #region ACT
             try 
             {
-                //Calls LoadNewImage in testLogic
+                // CALL LoadNewImage in testLogic
                 testLogic.LoadNewImage();
 
             #endregion
             #region ASSERT
-                //Fails the test as the Exception is not called
+                // FAIL the test if the exception is not called
                 Assert.IsTrue(false);
             }
             catch (InvalidFileTypeException) 
             {
-                //Passes the test
+                // PASS the test if the exception was called
                 Assert.IsTrue(true);
             }
             #endregion
