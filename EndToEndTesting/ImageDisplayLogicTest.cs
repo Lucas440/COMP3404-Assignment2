@@ -7,21 +7,20 @@ using Server.Command;
 
 /// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
-/// DATE: 25/03/22
+/// DATE: 21/04/2022
 /// </summary>
 namespace EndToEndTesting
 {
     /// <summary>
-    /// This test the ImageDisplayLogic class
-    /// This test will ensure the OnButtonClick method functions correctly with the event given
+    /// This class tests the ImageDisplayLogic class
     /// </summary>
     [TestClass]
     public class ImageDisplayLogicTest
     {
         /// <summary>
-        /// This method will Test the OnButtonClick method
-        /// It should respond to the event Args that is given to it
-        /// This test passess when the correct response is given
+        /// This method will test the OnButtonClick method
+        /// The method should cause an effect on the image provided
+        /// The test will pass if the correct response is given
         /// </summary>
         [TestMethod]
         public void TestOnButtonClick()
@@ -34,7 +33,7 @@ namespace EndToEndTesting
             LoadedImageLogic testLoadedLogic = new LoadedImageLogic();
 
             // GET the path to an image
-            string path = "..\\..\\..\\..\\COMP3404-Assignment2\\FishAssets\\JavaFish.png";
+            string path = "..\\..\\..\\..\\COMP3404-Assignment2-master\\FishAssets\\JavaFish.png";
 
             // LOAD the image from the given path
             testLoadedLogic.LoadNewImage(path);
@@ -42,7 +41,7 @@ namespace EndToEndTesting
             // SET the image to a variable
             Image testBeforeImage = testLoadedLogic.GetImage(path);
 
-            //Initalises the Logic passing a clone of the image, a new command and commandinvoker
+            // INITIALISE the logic passing a clone of the image, a new command and a commandinvoker
             testDisplayLogic.Initialise((Image)testBeforeImage.Clone() , new CommandZeroParam() , new CommandInvoker());
 
             #endregion
@@ -53,15 +52,15 @@ namespace EndToEndTesting
             #endregion
 
             #region ASSERT
-            //If the images are different this is true
+            // TEST if the Rotate command has worked
             if (testBeforeImage != testDisplayLogic.DisplayImage) 
             {
-                //the test passes
+                // PASS the test if the images are different
                 Assert.IsTrue(true);
             }
             else 
             {
-                //the test fails
+                // FAIL the test if the images are the same
                 Assert.IsTrue(false);
             }
             #endregion
